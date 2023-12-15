@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+#  mongodb:
+#    image: mongo
+#    container_name: mymongodb
+#    ports:
+#      - "27017:27017"
+#    networks:
+#      - mynetwork
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: root
+      
+      
+  gotenberg:
+    image: thecodingmachine/gotenberg:latest 
+    container_name: mygotenberg
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+  
+  my_postgres:
+    image: postgres:16.1-alpine
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - mynetwork
+    environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: users
+    
+  my_django_app:
+      build:
+        context: ./my_app
+      container_name: django_app
+      ports:
+        - "8000:8000"
+      environment:
+        DJANGO_DB_HOST: my_postgres 
+        DJANGO_DB_PORT: 5432
+        DJANGO_DB_NAME: users
+        DJANGO_DB_USER: postgres
+        DJANGO_DB_PASSWORD: postgres
+      volumes:
+        - ./path/to/local/django_app:/app 
+      depends_on:
+        - my_postgres
+      networks:
+        - mynetwork
+ 
+
+#  aspnetmvcapp:
+#    image: your-aspnet-mvc-image:latest  # Zastąp to odpowiednią nazwą obrazu ASP.NET MVC
+#    container_name: myaspnetmvcapp
+#    ports:
+#      - "5000:80"
+#    networks:
+#      - mynetwork
+#    depends_on:
+#      - mongodb
+
+networks:
+  mynetwork:
+   name: "app_mynetwork"

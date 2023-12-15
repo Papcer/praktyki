@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>App</name>
+    </assembly>
+    <members>
+        <member name="M:App.Controllers.PDFController.HtmlToPdf(Gotenberg.Sharp.API.Client.GotenbergSharpClient)">
+            <summary>
+            Api korzystające z narzędzia Gotenberg do konwertowania pliku html na pdf
+            </summary>
+            <returns>
+            Bilet w formie pdf zawierający informację o wydarzeniu, kliencie
+            </returns>
+            <response code="200">Plik biletu został wygenerowany</response>
+            <response code="400">Bład podczas generowania</response>
+        </member>
+    </members>
+</doc>
