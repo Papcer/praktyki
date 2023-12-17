@@ -1,16 +1,18 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace App.Models;
 
+[Table("aplikacja_userdata")]
 public class Customer
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set; }
+    public int id { get; set; }
     public string firstName { get; set; }
     public string lastName { get; set; }
-    public string email { get; set; }
-    public string phoneNumber { get; set; }
+    public string phonenumber { get; set; }
 
+    public string Email => User?.username;
+    public int UserId { get; set; }
+    public User User { get; set; }
 }

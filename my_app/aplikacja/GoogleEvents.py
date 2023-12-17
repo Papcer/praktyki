@@ -12,7 +12,7 @@ from django.http import JsonResponse
 import json
 from aplikacja.decorators import add_or_delete_permission, view_permission
 from rest_framework.response import Response
-from .models import Event, Log, UserData
+from .models import Event,UserData
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 from django.db import transaction
@@ -169,13 +169,13 @@ def save_google_calendar(request):
             calendarID=event['id']
         )
 
-        log = Log.objects.create(
-            log_type='Dodanie wydarzenia',
-            log_description=f"Dodano wydarzenie o nazwie '{title}'",
-            timestamp=timezone.now() + timezone.timedelta(hours=1),
-            event_id=event_db.id,
-            user=request.user,
-        )
+        # log = Log.objects.create(
+        #     log_type='Dodanie wydarzenia',
+        #     log_description=f"Dodano wydarzenie o nazwie '{title}'",
+        #     timestamp=timezone.now() + timezone.timedelta(hours=1),
+        #     event_id=event_db.id,
+        #     user=request.user,
+        # )
 
 
         return Response({'message': 'Wydarzenie dodane do kalendarza.', 'event_link': event['htmlLink'] , 'event_id': event['id']}, status=201)
@@ -316,13 +316,13 @@ def delete_event(request, event_id):
         event_db.delete()
 
         #dodaj log
-        log = Log.objects.create(
-            log_type='Usunięcie wydarzenia',
-            log_description=f"Usunięto wydarzenie o id = '{event_id}'",
-            timestamp=timezone.now() + timezone.timedelta(hours=1),
-            event_id=event_db.id,
-            user=request.user,
-        )
+        # log = Log.objects.create(
+        #     log_type='Usunięcie wydarzenia',
+        #     log_description=f"Usunięto wydarzenie o id = '{event_id}'",
+        #     timestamp=timezone.now() + timezone.timedelta(hours=1),
+        #     event_id=event_db.id,
+        #     user=request.user,
+        # )
 
 
         return Response({'message': 'Wydarzenie zostało usunięte z kalendarza.'}, status=201)
@@ -418,14 +418,14 @@ def edit_event(request, event_id):
             event_db.save()
 
             #dodaje logi
-            event_id_db = Event.objects.filter(calendarID=event_id).first()
-            log = Log.objects.create(
-                log_type='Aktualizacja wydarzenia',
-                log_description=f"Zaktualizowano wydarzenie '{old_title}'",
-                timestamp=timezone.now() + timezone.timedelta(hours=1),
-                event_id= event_id_db.id if event else None,
-                user=request.user,
-            )
+            # event_id_db = Event.objects.filter(calendarID=event_id).first()
+            # log = Log.objects.create(
+            #     log_type='Aktualizacja wydarzenia',
+            #     log_description=f"Zaktualizowano wydarzenie '{old_title}'",
+            #     timestamp=timezone.now() + timezone.timedelta(hours=1),
+            #     event_id= event_id_db.id if event else None,
+            #     user=request.user,
+            # )
 
         updated_event = service.events().update(calendarId='primary', eventId=event_id, body=event).execute()
 

@@ -1,13 +1,15 @@
 using QRCoder;
 using System.Drawing;
 using System.Drawing.Imaging;
+using App.Context;
 using App.Models;
-using App.Services;
 using Gotenberg.Sharp.API.Client;
 using Gotenberg.Sharp.API.Client.Domain.Builders;
 using Gotenberg.Sharp.API.Client.Domain.Builders.Faceted;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
+using SkiaSharp;
 using ZXing;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
@@ -18,15 +20,15 @@ namespace App.Controllers;
 public class PDFController : ControllerBase
 {
     private readonly IHostingEnvironment _hostingEnvironment;
-    private readonly MongoDbService _mongoDbService;
-
+    private readonly ApplicationContext _context;
+    
     //losowy numer do nazwy biletu
     static Random Rand = new Random(Math.Abs( (int) DateTime.Now.Ticks));
 
-    public PDFController(IHostingEnvironment hostingEnvironment, MongoDbService mongoDbService)
+    public PDFController(IHostingEnvironment hostingEnvironment, ApplicationContext context)
     {
         _hostingEnvironment = hostingEnvironment;
-        _mongoDbService = mongoDbService;
+        _context = context;
     }
     
     
@@ -43,38 +45,31 @@ public class PDFController : ControllerBase
     {
         //wybranie losowego klienta z bazy
         Customer randomCustomer = await GetRandomCustomer();
-        ObjectId customerId = ObjectId.Parse(randomCustomer.Id);
-        
-        var allEvents = await _mongoDbService.GetEventAsync();
         
         //tworznie biletu 
         var ticket = new Ticket
         {
-            Id= "asdfasdfasdfasd",
-            CustomerId = customerId,
-            EventId = ObjectId.GenerateNewId(),
-            Status = "Active"
+            id= 1,
+            event_id = 1,
+            userdata_id = 1,
         };
         
         //tworzenie eventu
         var events = new Event
         {
-            name = "Wielkie wydarzenie",
+            title = "Wielkie wydarzenie",
             location = "Ulica wielka nowa itp"
         };
         
         //string htmlFilePath = Path.Combine(_hostingEnvironment.ContentRootPath, "Templates/index.html");
         //string htmlContent = System.IO.File.ReadAllText(htmlFilePath);
         
-        string htmlContent = GenerateHtmlContent(ticket, randomCustomer, events);
-        
-        //string qrCodeContent = GenerateQrCode(ticket.Id);
-        
-      //  htmlContent = htmlContent.Replace("<!-- INSERT_QR_CODE -->", qrCodeContent);
+        string qrCodeContent = GenerateQrCode(ticket.id.ToString());
+        string htmlContent = GenerateHtmlContent(ticket, randomCustomer, events, qrCodeContent);
         
         var builder = new HtmlRequestBuilder()
             .AddDocument(doc =>
-                doc.SetBody(htmlContent).SetFooter(htmlContent)
+                doc.SetBody(htmlContent)
             ).WithDimensions(dims =>
             {
                 dims.SetPaperSize(PaperSizes.A3)
@@ -90,7 +85,7 @@ public class PDFController : ControllerBase
     }
     
     //generowanie szablonu html biletu
-    private string GenerateHtmlContent(Ticket ticket, Customer customer, Event events)
+    private string GenerateHtmlContent(Ticket ticket, Customer customer, Event events, string qrCodeContent)
     {
         return $@"
            <!DOCTYPE html>
@@ -122,26 +117,23 @@ public class PDFController : ControllerBase
             </div>
 
             <div>
-                <p>Email: {customer.email}   </p>
-                <p>Numer telefonu klienta: {customer.phoneNumber}</p>
+                <p>Email: {customer.Email}   </p>
+                <p>Numer telefonu klienta: {customer.phonenumber}   </p>
             </div>
 
-            <div>
-                <p>Status biletu: {ticket.Status}</p>
-            </div>
 
             <div>
                 <h2>Wydarzenie:</h2>
             </div>
             <div>
-                <p>Nazwa wydarzenia: {events.name}</p>
+                <p>Nazwa wydarzenia: {events.title}   </p>
             </div>
             <div>
-                <p>Odbedzie sie w : {events.location}</p>
+                <p>Odbedzie sie w : {events.location}   </p>
             </div>
 
-            <div>
-            <!-- INSERT_QR_CODE_HERE -->
+           <div>
+                <img src='{qrCodeContent}' width='150' height='150' />
             </div>
         </body>
         </html>
@@ -151,7 +143,9 @@ public class PDFController : ControllerBase
     //pobieranie losowego klienta z bazy jesli taki istnieje
     private async Task<Customer> GetRandomCustomer()
     {
-        var allCustomers = await _mongoDbService.GetCustomerAsync();
+        var allCustomers = await _context.aplikacja_userdata
+            .Include(c => c.User) 
+            .ToListAsync();
         
         if (allCustomers == null || allCustomers.Count == 0)
         {
@@ -164,19 +158,22 @@ public class PDFController : ControllerBase
     }
     
     //generowanie kodu QR na podstawie id biletu
-    private static string GenerateQrCode(string ticketId)
+    private string GenerateQrCode(string data)
     {
-        QRCodeGenerator qrGenerator = new QRCodeGenerator();
-        QRCodeData qrCodeData = qrGenerator.CreateQrCode(ticketId, QRCodeGenerator.ECCLevel.Q);
-        QRCode qrCode = new QRCode(qrCodeData);
-
-        Bitmap qrCodeImage = qrCode.GetGraphic(20);
-
         using (MemoryStream stream = new MemoryStream())
         {
-            qrCodeImage.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-            byte[] qrCodeBytes = stream.ToArray();
-            return Convert.ToBase64String(qrCodeBytes);
+            QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
+            //tworzenie danych przechowywanych przez kod QR
+            QRCodeData qrCodeData = qrCodeGenerator.CreateQrCode($"Numer biletu: {data}", QRCodeGenerator.ECCLevel.Q);
+            //tworzenie reprezetnacji kodu w postaci png jako tablica bajtow
+            PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
+            //tablica bajtow, qr w rozmiarze 20x20 
+            byte[] qrCodeBytes = qrCode.GetGraphic(20);
+            //zapisanie bajtow do strumienia
+            stream.Write(qrCodeBytes, 0, qrCodeBytes.Length);
+
+            // Konwertuj MemoryStream na base64
+            return $"data:image/png;base64,{Convert.ToBase64String(stream.ToArray())}";
         }
     }
 }

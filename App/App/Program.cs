@@ -1,10 +1,11 @@
 using System.Reflection;
-using App.Helper;
-using App.Services;
+using App.Context;
 using Gotenberg.Sharp.API.Client;
 using Gotenberg.Sharp.API.Client.Domain.Settings;
 using Gotenberg.Sharp.API.Client.Extensions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,10 +40,17 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 
-builder.Services.Configure<MongoDbSettings>(
-    builder.Configuration.GetSection("MongoDB"));
+/*builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection("MongoDB"));*/
 
-builder.Services.AddSingleton<MongoDbService>();
+
+builder.Services.AddDbContext<ApplicationContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+
+//builder.Services.AddSingleton<MongoDbService>();
 
 builder.Services.AddOptions<GotenbergSharpClientOptions>()
     .Bind(builder.Configuration.GetSection(nameof(GotenbergSharpClient)));
@@ -50,10 +58,6 @@ builder.Services.AddOptions<GotenbergSharpClientOptions>()
 builder.Services.AddGotenbergSharpClient();
 
 var app = builder.Build();
-
-
-
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

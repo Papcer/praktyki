@@ -5,12 +5,9 @@ namespace App.Models;
 
 public class Ticket
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set; }
+    public int id { get; set; }
     
-    public ObjectId CustomerId { get; set; }
-    public ObjectId EventId { get; set; }
+    public int userdata_id { get; set; }
+    public int event_id { get; set; }
     
-    public string Status { get; set; }
 }

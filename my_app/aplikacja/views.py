@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets
-from .models import User, Role, UserRoles, Event, Log, UserData, PhoneNumbers, UserContact, UserLoginHistory
-from .serializers import ( UserSerializer, RoleSerializer, UserRolesSerializer, EventSerializer, LogSerializer, UserDataSerializer,
-                           PhoneNumbersSerializer, UserContactSerializer, UserLoginHistorySerializer
+from .models import User, Role, UserRoles, Event, UserData
+from .serializers import ( UserSerializer, RoleSerializer, UserRolesSerializer, EventSerializer, UserDataSerializer,
+                           
 )
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -29,22 +29,7 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
-class LogViewSet(viewsets.ModelViewSet):
-    queryset = Log.objects.all()
-    serializer_class = LogSerializer
-
 class UserDataViewSet(viewsets.ModelViewSet):
     queryset = UserData.objects.all()
     serializer_class = UserDataSerializer
 
-class PhoneNumbersViewSet(viewsets.ModelViewSet):
-    queryset = PhoneNumbers.objects.all()
-    serializer_class = PhoneNumbersSerializer
-
-class UserContactViewSet(viewsets.ModelViewSet):
-    queryset = UserContact.objects.all()
-    serializer_class = UserContactSerializer
-
-class UserLoginHistoryViewSet(viewsets.ModelViewSet):
-    queryset = UserLoginHistory.objects.all()
-    serializer_class = UserLoginHistorySerializer

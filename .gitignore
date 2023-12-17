@@ -1,0 +1,216 @@
+# ASP.NET
+bin/
+obj/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+
+
+# Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+
+# VS Code directories
+.vscode/
+
+# PyCharm directories
+.idea/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# VS Code directories
+.vscode/
+
+# PyCharm directories
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+App/App/bin/Debug/net7.0/appsettings.json
+App/App/bin/Debug/net7.0/App.runtimeconfig.json
+App/App/bin/Debug/net7.0/App.pdb
+App/App/bin/Debug/net7.0/App.dll
+App/App/bin/Debug/net7.0/App.deps.json
+App/App/obj/App.csproj.nuget.dgspec.json
+App/App/obj/App.csproj.nuget.g.props
+App/App/obj/App.csproj.nuget.g.targets
+App/App/obj/Debug/net7.0/App.assets.cache
+App/App/obj/Debug/net7.0/App.csproj.AssemblyReference.cache
+App/App/obj/Debug/net7.0/App.csproj.CoreCompileInputs.cache
+App/App/obj/Debug/net7.0/App.csproj.FileListAbsolute.txt
+App/App/obj/Debug/net7.0/App.dll
+App/App/obj/Debug/net7.0/App.genruntimeconfig.cache
+App/App/obj/Debug/net7.0/App.pdb
+App/App/obj/Debug/net7.0/ref/App.dll
+App/App/obj/Debug/net7.0/refint/App.dll
+App/App/obj/project.assets.json
+App/App/obj/project.nuget.cache
+App/App/obj/project.packagespec.json
+App/App/obj/rider.project.model.nuget.info
+App/App/obj/rider.project.restore.info
