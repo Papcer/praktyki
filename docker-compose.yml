@@ -45,8 +45,6 @@ services:
         DJANGO_DB_NAME: users
         DJANGO_DB_USER: postgres
         DJANGO_DB_PASSWORD: postgres
-      volumes:
-        - ./path/to/local/django_app:/app 
       depends_on:
         - my_postgres
       networks:
