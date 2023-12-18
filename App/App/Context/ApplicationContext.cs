@@ -28,4 +28,14 @@ public class ApplicationContext : DbContext
     //-----Customer-----//
     public DbSet<Customer> aplikacja_userdata { get; set; }
 
+    
+    
+    //-----Ticket-----//
+    public DbSet<Ticket> aplikacja_ticket { get; set; }
+    
+    
+    //-----Event-----//
+    public DbSet<Event> aplikacja_event { get; set; }
+
+    
 }

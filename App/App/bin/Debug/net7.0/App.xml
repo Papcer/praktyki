@@ -4,9 +4,17 @@
         <name>App</name>
     </assembly>
     <members>
+        <member name="M:App.Controllers.GenerateFakeData.addFakeDataToDataBase">
+            <summary>
+            Api generujące użytkowników, wydarzenia oraz dane do tabeli user
+            </summary>
+            <response code="200">Dane został dodane do bazy</response>
+            <response code="400">Bład podczas dodawania</response>
+        </member>
         <member name="M:App.Controllers.PDFController.HtmlToPdf(Gotenberg.Sharp.API.Client.GotenbergSharpClient)">
             <summary>
-            Api korzystające z narzędzia Gotenberg do konwertowania pliku html na pdf
+            Api korzystające z narzędzia Gotenberg do konwertowania pliku html na pdf.
+            Pobiera z bazy losowy event, klienta oraz utworzony wcześniej bilet i generuje plik pdf
             </summary>
             <returns>
             Bilet w formie pdf zawierający informację o wydarzeniu, kliencie

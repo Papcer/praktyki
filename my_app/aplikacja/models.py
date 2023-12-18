@@ -7,7 +7,7 @@ from django.utils import timezone
 class User(AbstractBaseUser):
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=150)
-
+    
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
     
@@ -54,7 +54,7 @@ class UserData(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstName = models.CharField(max_length=255)
     lastName = models.CharField(max_length=255)
-    phonenumber = models.CharField(max_length=11)
+    phoneNumber = models.CharField(max_length=11)
     #city = models.CharField(max_length=255)
     #zipcode = models.CharField(max_length=10)
     #street = models.CharField(max_length=255)

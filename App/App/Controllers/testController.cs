@@ -20,5 +20,9 @@ public class testController : ControllerBase
     {
         return await _context.aplikacja_user.ToListAsync();
     }
-    
+    [HttpGet("GetCustomer")]
+    public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
+    {
+        return await _context.aplikacja_userdata.ToListAsync();
+    }
 }

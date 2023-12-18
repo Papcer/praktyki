@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using App.Context;
 using App.Models;
+using Bogus;
 using Gotenberg.Sharp.API.Client;
 using Gotenberg.Sharp.API.Client.Domain.Builders;
 using Gotenberg.Sharp.API.Client.Domain.Builders.Faceted;
@@ -25,15 +26,16 @@ public class PDFController : ControllerBase
     //losowy numer do nazwy biletu
     static Random Rand = new Random(Math.Abs( (int) DateTime.Now.Ticks));
 
+  
     public PDFController(IHostingEnvironment hostingEnvironment, ApplicationContext context)
     {
         _hostingEnvironment = hostingEnvironment;
         _context = context;
     }
     
-    
     /// <summary>
-    /// Api korzystające z narzędzia Gotenberg do konwertowania pliku html na pdf
+    /// Api korzystające z narzędzia Gotenberg do konwertowania pliku html na pdf.
+    /// Pobiera z bazy losowy event, klienta oraz utworzony wcześniej bilet i generuje plik pdf
     /// </summary>
     /// <returns>
     /// Bilet w formie pdf zawierający informację o wydarzeniu, kliencie
@@ -43,49 +45,61 @@ public class PDFController : ControllerBase
     [HttpGet("ConvertHtmlToPdf")]
     public async Task<ActionResult> HtmlToPdf([FromServices] GotenbergSharpClient sharpClient)
     {
-        //wybranie losowego klienta z bazy
-        Customer randomCustomer = await GetRandomCustomer();
+        var randomCustomer = await _context.aplikacja_userdata.ToListAsync();
+        var randomcustomer = randomCustomer[new Random().Next(randomCustomer.Count)];
         
-        //tworznie biletu 
-        var ticket = new Ticket
-        {
-            id= 1,
-            event_id = 1,
-            userdata_id = 1,
-        };
+        var eve = await _context.aplikacja_event.ToListAsync();
+        var ev = eve[new Random().Next(eve.Count)];
         
-        //tworzenie eventu
-        var events = new Event
-        {
-            title = "Wielkie wydarzenie",
-            location = "Ulica wielka nowa itp"
-        };
+        var randomticket = await _context.aplikacja_ticket
+            .FirstOrDefaultAsync(t => t.event_id == ev.id);
+        
+        var user = await _context.aplikacja_user
+            .FirstOrDefaultAsync(u => u.id == randomcustomer.UserId);
+        
+        
+        string qrCodeContent = GenerateQrCode(randomticket.id.ToString());
+
+        string htmlContent = GenerateHtmlContent(randomticket, randomcustomer, user, ev, qrCodeContent);
+        
+                var builder = new HtmlRequestBuilder()
+                    .AddDocument(doc =>
+                        doc.SetBody(htmlContent)
+                    ).WithDimensions(dims =>
+                    {
+                        dims.SetPaperSize(PaperSizes.A3)
+                            .SetMargins(Margins.None)
+                            .SetScale(.99);
+                    });
+
+                var req = await builder.BuildAsync();
+                
+                using (var resulStream = await sharpClient.HtmlToPdfAsync(req))
+                {
+                    if (resulStream != null)
+                    {
+                        string folderPath = Path.Combine(_hostingEnvironment.ContentRootPath, "GeneratedTickets");
+                        Directory.CreateDirectory(folderPath);
+                        
+                        string fileName = $"ticket-{Rand.Next()}.pdf";
+                        string filePath = Path.Combine(folderPath, fileName);
+
+                        using (var fileStream = System.IO.File.Create(filePath))
+                        {
+                            await resulStream.CopyToAsync(fileStream);
+                        }
+                    }
+                }
+                //return this.File(result, "application/pdf", $"ticket-{Rand.Next()}.pdf");
+
+        return Ok("Poprawnie wygenerowano bilety");
         
         //string htmlFilePath = Path.Combine(_hostingEnvironment.ContentRootPath, "Templates/index.html");
         //string htmlContent = System.IO.File.ReadAllText(htmlFilePath);
-        
-        string qrCodeContent = GenerateQrCode(ticket.id.ToString());
-        string htmlContent = GenerateHtmlContent(ticket, randomCustomer, events, qrCodeContent);
-        
-        var builder = new HtmlRequestBuilder()
-            .AddDocument(doc =>
-                doc.SetBody(htmlContent)
-            ).WithDimensions(dims =>
-            {
-                dims.SetPaperSize(PaperSizes.A3)
-                    .SetMargins(Margins.None)
-                    .SetScale(.99);
-            });
-
-        var req = await builder.BuildAsync();
-
-        var result = await sharpClient.HtmlToPdfAsync(req);
-
-        return this.File(result, "application/pdf", $"ticket-{Rand.Next()}.pdf");
     }
     
     //generowanie szablonu html biletu
-    private string GenerateHtmlContent(Ticket ticket, Customer customer, Event events, string qrCodeContent)
+    private string GenerateHtmlContent(Ticket ticket, Customer customer, User user, Event events, string qrCodeContent)
     {
         return $@"
            <!DOCTYPE html>
@@ -117,7 +131,7 @@ public class PDFController : ControllerBase
             </div>
 
             <div>
-                <p>Email: {customer.Email}   </p>
+                <p>Email: {user.username}   </p>
                 <p>Numer telefonu klienta: {customer.phonenumber}   </p>
             </div>
 
@@ -130,6 +144,10 @@ public class PDFController : ControllerBase
             </div>
             <div>
                 <p>Odbedzie sie w : {events.location}   </p>
+            </div>
+
+            <div>
+                <p>Dnia : {events.start_date}   </p>
             </div>
 
            <div>
@@ -176,4 +194,5 @@ public class PDFController : ControllerBase
             return $"data:image/png;base64,{Convert.ToBase64String(stream.ToArray())}";
         }
     }
+    
 }
