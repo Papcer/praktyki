@@ -1,0 +1,100 @@
+.main{
+  width: 1440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .title{
+    color: #141416;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: DM Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    margin-top: 54px;
+    margin-left: 222px;
+  }
+  .frame{
+    display: flex;
+    flex-direction: row;
+    margin-left: 222px;
+    margin-right: 222px;
+    margin-top: 32px;
+    justify-content: space-between;
+    .section{
+      display: flex;
+      flex-direction: column;
+      .section-title{
+        margin: 0px;
+        margin-bottom: 20px;
+        color: #3B5266;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+      }
+      .section-frame{
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        .icon-box{
+          display: flex;
+          flex-direction: row;
+          gap: 20px;
+        }
+        p{
+          color: #363940;
+          margin: 0px;
+          font-feature-settings: 'clig' off, 'liga' off;
+          font-family: Poppins;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 22px;
+        }
+      }
+    }
+  }
+  .footer{
+    margin-top: 32px;
+    display: inline-flex;
+    height: 64px;
+    padding: 21px 161px 21px 222px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 625px;
+    flex-shrink: 0;
+    .language{
+      display: flex;
+      width: 111px;
+      height: 22px;
+      padding-right: 1px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: row;
+      gap: 10px;
+      p{
+        color: #95A1BB;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Poppins;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;}
+    }
+    .copyright{
+      color: #95A1BB;
+      margin: 0px;
+      width: 320px;
+      text-align: right;
+      font-feature-settings: 'clig' off, 'liga' off;
+      font-family: Poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px;
+    }
+  }
+}

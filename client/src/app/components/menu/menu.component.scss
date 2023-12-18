@@ -1,0 +1,113 @@
+.nav-content{
+  display: flex;
+  width: 1120px;
+  padding: 20px 160px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FCFCFD;;
+
+  .left-content{
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    width: 615px;
+    height: 52px;
+    box-sizing: border-box;
+    .logo{
+      display: flex;
+      width: 138px;
+      height: 52px;
+      padding: 16px 24px;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      border-radius: 90px;
+      background: #E6E8EC;
+
+      border: 0;
+      box-sizing: border-box;
+      .svg-star{
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+      .p-logo{
+        color: #777E90;
+        text-align: center;
+        font-family: DM Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 16px;
+      }
+    }
+    .line{
+      width: 2px;
+      height: 40px;
+      border-radius: 2px;
+      background: #E6E8EC;
+    }
+    .p-menu{
+      color: #777E90;
+      text-align: center;
+      font-family: DM Sans;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+    }
+
+  }
+  last-child {
+    margin-right: 0;
+  }
+  .right-content{
+    width: 114px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    .basket{
+      display: inline-flex;
+      padding: 8px;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+      gap: 8px;
+      border-radius: 3px;
+
+      .badge{
+        display: inline-flex;
+        padding: 2px 6px;
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 12px;
+        border: 1px solid #777E90;
+        background: #18191D;
+        box-sizing: border-box;
+        position: absolute;
+        margin-bottom: 18px;
+        margin-left: 10px;
+
+        .p-basket{
+          color: #FFF;
+          font-family: Inter;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 16px;
+          margin: 0px;
+        }
+
+      }
+    }
+    .account{
+      display: flex;
+      width: 24px;
+      height: 24px;
+      padding: 10px;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+}
