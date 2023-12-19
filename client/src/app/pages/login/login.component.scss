@@ -1,0 +1,214 @@
+@import '../../_variables.scss';
+
+.body {
+  width: 1440px;
+  height: 950px;
+  display: flex;
+  flex-direction: row;
+  background-color: #FCFCFD;
+
+  .line {
+    width: 1px;
+    height: 950px;
+    background: #EDF2F7;
+    border: 1px;
+    margin-right: 1px;
+  }
+
+  .main {
+    margin-left: 25px;
+    margin-top: 34px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    //box-sizing: border-box;
+    height: 782px;
+    width: 648px;
+
+    .form-login {
+      display: flex;
+      border: 0;
+      box-sizing: border-box;
+      width: 424px;
+      height: 524px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+      margin-bottom: 50px;
+
+      h2 {
+        align-self: stretch;
+        color: #27272E;
+        /* Headings/h2 */
+        font-family: Inter;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 136.023%;
+        margin: 0px;
+      }
+
+      .p-under-title {
+        align-self: stretch;
+        color: #27272E;
+        font-feature-settings: 'salt' on;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 162.023%; /* 25.924px */
+        margin: 0px;
+        margin-top: 12px;
+
+      }
+
+    }
+
+    .form {
+      display: flex;
+      width: 424px;
+      padding-top: 24px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+      box-sizing: border-box;
+
+      .box {
+        width: 100%;
+
+        .p-forgot-password {
+          width: 424px;
+          color: #777E90;
+          text-align: right;
+          font-feature-settings: 'clig' off, 'liga' off;
+          font-family: Inter;
+          font-size: 11px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 12px; /* 109.091% */
+          margin-top: 8px;
+        }
+      }
+
+      .label-form-title {
+        color: #425466;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .input {
+        display: flex;
+        height: 46px;
+        padding: 14px 50px 16px 16px;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 6px;
+        border: 0px;
+        box-sizing: border-box;
+        background: #EDF2F7;
+        color: #7A828A;
+        width: 100%;
+        margin-top: 8px;
+        //font
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Inter;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 15px;
+      }
+    }
+
+    .social-top {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+
+      .social-line {
+        width: 114px;
+        height: 1px;
+        background: #EDF2F7;
+      }
+
+      .p-social {
+        color: #718096;
+        text-align: center;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Inter;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px; /* 150% */
+        letter-spacing: -0.08px;
+        margin: 0px;
+        padding: 0px;
+        margin-left: 24px;
+        margin-right: 24px;
+      }
+    }
+    .social-icons{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      width: 220px;
+      height: 52px;
+      margin: auto;
+      .svg-icon{
+        width: 52px;
+        height: 52px;
+      }
+      .google-icon-background{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 1px;
+
+        width: 52px;
+        height: 52px;
+        flex-shrink: 0;
+        border-radius: 26px;
+        background: #FFF;
+        box-shadow: 0px 1px 3px 0px rgba(50, 50, 71, 0.10), 0px 0px 1px 0px rgba(12, 26, 75, 0.20);
+      }
+    }
+    .p-frame {
+      width: 214px;
+      height: 24px;
+      padding: 10px;
+      display: flex;
+      flex-direction: row;
+
+      h6 {
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+        margin: 0px;
+      }
+
+      .regular-text {
+        color: #718096;
+        text-align: right;
+      }
+
+      .sing-up {
+        color: $primary-black;
+      }
+    }
+  }
+}

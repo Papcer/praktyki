@@ -1,0 +1,52 @@
+
+app-login{
+  margin:auto;
+}
+.main {
+  width: 717.972px;
+  height: 950px;
+  flex-shrink: 0;
+  background: #353945;
+
+
+  h3{
+    width: 473px;
+    height: 53px;
+    flex-shrink: 0;
+    position: absolute;
+    color: #FFF;
+    font-family: DM Sans;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: -0.4px;
+    margin-top: 253px;
+    margin-left: 158px;
+    margin-bottom: 0px;
+  }
+  .p-content{
+    width: 420px;
+    height: 60px;
+    position: absolute;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    margin-top: 341px;
+    margin-left: 168px;
+    margin-bottom: 0px;
+  }
+  .svg-content{
+    width: 224px;
+    height: 224px;
+    flex-shrink: 0;
+    margin-left: 244px;
+    margin-top: 581px;
+
+    margin-bottom: 145px;
+  }
+}
+

@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'DM Sans';
+  src: local('DM Sans'), url('/assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url('/assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins'), url('/assets/fonts/Poppins/Poppins-Italic.ttf') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  src: local('Lato'), url('/assets/fonts/Lato/Lato-Light.ttf') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+:root{
+  background-color: #F4F5F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-dark-16{
+  display: flex;
+  border-radius: 90px;
+  background: #141416;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border: 0px;
+  box-sizing: border-box;
+  color: #FCFCFD;
+  text-align: center;
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  width: 100%;
+}
+.button-dark-14{
+  display: flex;
+  border-radius: 90px;
+  background: #141416;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border: 0px;
+  box-sizing: border-box;
+  color: #FCFCFD;
+  text-align: center;
+  font-family: DM Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+}
+p{
+  margin: 0px;
+}

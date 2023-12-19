@@ -1,0 +1,18 @@
+<div class="main">
+  <app-menu></app-menu>
+  <!-- section-1 -->
+  <div class="search-frame"><app-search-bar></app-search-bar></div>
+
+
+  <!-- section-2 -->
+  <app-slider [title]="'Nibh in dolor bibendum.'" [text]="'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sapien, est felis, sagittis viverra nulla mattis scelerisque. Eget cras integer.'"></app-slider>
+
+  <!-- section-3 -->
+
+  <!-- section-4 -->
+  <app-products-slider [title]="'Recommended'" [showDots]="true" [showArrows]="true" [products]="recommendedProducts"></app-products-slider>
+  <app-products-slider [title]="'Best Seller'" [showDots]="true" [showArrows]="true" [products]="bestSellerProducts"></app-products-slider>
+  <app-products-slider [title]="'All Product'" [showDots]="false" [showArrows]="false" [products]="allProducts"></app-products-slider>
+  <button class="button-load-100">Load more 100+</button>
+  <app-footer></app-footer>
+</div>
