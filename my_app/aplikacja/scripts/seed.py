@@ -1,9 +1,15 @@
 import random
+
+from argon2 import PasswordHasher
 from django_seed import Seed
 from django.contrib.auth.hashers import make_password
 from aplikacja.models import User, Role, UserRoles
 import secrets
 
+
+def set_password(self, raw_password):
+    ph = PasswordHasher()
+    self.password = ph.hash(raw_password)
 def seed_database():
     seeder = Seed.seeder()
     
@@ -15,10 +21,9 @@ def seed_database():
     
     # Users
     for role in roles:
-        random_password = secrets.token_urlsafe(12)
         user_data = {
             "username": f"{role}@epicup.pl",
-            "password": make_password(random_password),
+            "password": set_password('test'),
         }
         user = User(**user_data)
         user.save()

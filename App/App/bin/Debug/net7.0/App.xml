@@ -4,15 +4,144 @@
         <name>App</name>
     </assembly>
     <members>
+        <member name="M:App.Controllers.GenerateFakeData.addFakeDataToDataBase">
+            <summary>
+            Api generujące użytkowników, wydarzenia oraz dane do tabeli user
+            </summary>
+            <response code="200">Dane został dodane do bazy</response>
+            <response code="400">Bład podczas dodawania</response>
+        </member>
         <member name="M:App.Controllers.PDFController.HtmlToPdf(Gotenberg.Sharp.API.Client.GotenbergSharpClient)">
             <summary>
-            Api korzystające z narzędzia Gotenberg do konwertowania pliku html na pdf
+            Api korzystające z narzędzia Gotenberg do konwertowania pliku html na pdf.
+            Pobiera z bazy losowy event, klienta oraz utworzony wcześniej bilet i generuje plik pdf
             </summary>
             <returns>
             Bilet w formie pdf zawierający informację o wydarzeniu, kliencie
             </returns>
             <response code="200">Plik biletu został wygenerowany</response>
             <response code="400">Bład podczas generowania</response>
+        </member>
+        <member name="M:App.Controllers.testController.GetUsers">
+            <summary>
+            Api pobierające dane logowania klienta z bazy
+            </summary>
+            <response code="200">Dane zostały poprawnie pobrane</response>
+            <response code="500">Bład podczas pobierania danych</response>
+        </member>
+        <member name="M:App.Controllers.testController.AddEntity(App.Models.User)">
+            <summary>
+            Api dodające użytkownika do bazy
+            </summary>
+            <response code="200">Dane zostały poprawnie dodane</response>
+            <response code="500">Bład podczas dodawania</response>
+        </member>
+        <member name="M:App.Controllers.testController.GetCustomer">
+            <summary>
+            Api pobierające dane klienta z bazy
+            </summary>
+            <response code="200">Dane zostały poprawnie pobrane</response>
+            <response code="500">Bład podczas pobierania danych</response>
+        </member>
+        <member name="M:App.Controllers.testController.AddEntity(App.Models.Customer)">
+            <summary>
+            Api dodające informację o użytkowniku do bazy
+            </summary>
+            <response code="200">Dane zostały poprawnie dodane</response>
+            <response code="500">Bład podczas dodawania</response>
+        </member>
+        <member name="M:App.Controllers.testController.GetEvents">
+            <summary>
+            Api pobierające dane o wydarzeniach z bazy
+            </summary>
+            <response code="200">Dane zostały poprawnie pobrane</response>
+            <response code="500">Bład podczas pobierania danych</response>
+        </member>
+        <member name="M:App.Controllers.testController.AddEntity(App.Models.Event)">
+            <summary>
+            Api dodające wydarzenie do bazy danych
+            </summary>
+            <response code="200">Dane zostały poprawnie dodane</response>
+            <response code="500">Bład podczas dodawania</response>
+        </member>
+        <member name="M:App.Controllers.testController.GetTickets">
+            <summary>
+            Api pobierające dane o bilecie z bazy
+            </summary>
+            <response code="200">Dane zostały poprawnie pobrane</response>
+            <response code="500">Bład podczas pobierania danych</response>
+        </member>
+        <member name="M:App.Controllers.testController.AddEntity(App.Models.Ticket)">
+            <summary>
+            Api dodające bilety do bazy danych
+            </summary>
+            <response code="200">Dane zostały poprawnie dodane</response>
+            <response code="500">Bład podczas dodawania</response>
+        </member>
+        <member name="P:App.Models.Customer.firstName">
+            <summary>
+            Imię klienta
+            </summary>
+        </member>
+        <member name="P:App.Models.Customer.lastName">
+            <summary>
+            Nazwisko klienta
+            </summary>
+        </member>
+        <member name="P:App.Models.Customer.phoneNumber">
+            <summary>
+            Numer telefonu klienta
+            </summary>
+        </member>
+        <member name="P:App.Models.Customer.Email">
+            <summary>
+            Email klienta mapowany z tabeli User
+            </summary>
+        </member>
+        <member name="P:App.Models.Customer.UserId">
+            <summary>
+            id wskazujące na tabele user
+            </summary>
+        </member>
+        <member name="P:App.Models.Event.title">
+            <summary>
+            Nazwa wydarzenia
+            </summary>
+        </member>
+        <member name="P:App.Models.Event.location">
+            <summary>
+            Pełna lokacja wydarzenia
+            </summary>
+        </member>
+        <member name="P:App.Models.Event.ticket_limit">
+            <summary>
+            Limit biletów na wydarzenie
+            </summary>
+        </member>
+        <member name="P:App.Models.Event.start_date">
+            <summary>
+            Data odbycia wydarzenia
+            </summary>
+        </member>
+        <member name="P:App.Models.Ticket.userdata_id">
+            <summary>
+            Id wskazujace na klienta posiadającego bilet
+            </summary>
+        </member>
+        <member name="P:App.Models.Ticket.event_id">
+            <summary>
+            Id wskazujące na wydarzenie, którego bilet dotyczy
+            </summary>
+        </member>
+        <member name="P:App.Models.User.username">
+            <summary>
+            Email klienta
+            </summary>
+        </member>
+        <member name="P:App.Models.User.password">
+            <summary>
+            Hasło klienta
+            </summary>
         </member>
     </members>
 </doc>

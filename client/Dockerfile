@@ -2,6 +2,7 @@
 # Use official node image as the base image
 FROM node:18 as build
 
+
 # Set the working directory
 WORKDIR /usr/local/app
 
