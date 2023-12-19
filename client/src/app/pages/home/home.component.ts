@@ -6,6 +6,7 @@ import {HomeForkComponent} from "../../components/home-fork/home-fork.component"
 import {HomeCommentComponent} from "../../components/home-comment/home-comment.component";
 import {HomeFooterPhotoComponent} from "../../components/home-footer-photo/home-footer-photo.component";
 import {FooterComponent} from "../../components/footer/footer.component";
+import {SliderComponent} from "../../components/slider/slider.component";
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ import {FooterComponent} from "../../components/footer/footer.component";
     HomeForkComponent,
     HomeCommentComponent,
     HomeFooterPhotoComponent,
-    FooterComponent],
+    FooterComponent,
+    SliderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

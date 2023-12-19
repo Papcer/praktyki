@@ -9,8 +9,8 @@ import {ProductInfoComponent} from "./pages/product-info/product-info.component"
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create-account', component: CreateAccountComponent },
-  { path: '', component: HomeComponent },
-  { path: 'products', component: ProductsComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '', component: ProductsComponent },
   { path: 'product-info', component: ProductInfoComponent },
 
 ];
