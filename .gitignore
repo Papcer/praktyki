@@ -192,25 +192,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-App/App/bin/Debug/net7.0/appsettings.json
-App/App/bin/Debug/net7.0/App.runtimeconfig.json
-App/App/bin/Debug/net7.0/App.pdb
-App/App/bin/Debug/net7.0/App.dll
-App/App/bin/Debug/net7.0/App.deps.json
-App/App/obj/App.csproj.nuget.dgspec.json
-App/App/obj/App.csproj.nuget.g.props
-App/App/obj/App.csproj.nuget.g.targets
-App/App/obj/Debug/net7.0/App.assets.cache
-App/App/obj/Debug/net7.0/App.csproj.AssemblyReference.cache
-App/App/obj/Debug/net7.0/App.csproj.CoreCompileInputs.cache
-App/App/obj/Debug/net7.0/App.csproj.FileListAbsolute.txt
-App/App/obj/Debug/net7.0/App.dll
-App/App/obj/Debug/net7.0/App.genruntimeconfig.cache
-App/App/obj/Debug/net7.0/App.pdb
-App/App/obj/Debug/net7.0/ref/App.dll
-App/App/obj/Debug/net7.0/refint/App.dll
-App/App/obj/project.assets.json
-App/App/obj/project.nuget.cache
-App/App/obj/project.packagespec.json
-App/App/obj/rider.project.model.nuget.info
-App/App/obj/rider.project.restore.info
+App/App/bin/
+App/App/obj/

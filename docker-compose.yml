@@ -1,18 +1,6 @@
 version: '3.8'
 
 services:
-#  mongodb:
-#    image: mongo
-#    container_name: mymongodb
-#    ports:
-#      - "27017:27017"
-#    networks:
-#      - mynetwork
-#    environment:
-#      MONGO_INITDB_ROOT_USERNAME: root
-#      MONGO_INITDB_ROOT_PASSWORD: root
-      
-      
   gotenberg:
     image: thecodingmachine/gotenberg:latest 
     container_name: mygotenberg
@@ -50,7 +38,18 @@ services:
       networks:
         - mynetwork
  
+  angular_app:
+     build:
+       context: ./client
+     container_name: angular_app
+     ports:
+       - "4200:80"
+     networks:
+       - mynetwork
+     depends_on:
+       - my_django_app
 
+      
 #  aspnetmvcapp:
 #    image: your-aspnet-mvc-image:latest  # Zastąp to odpowiednią nazwą obrazu ASP.NET MVC
 #    container_name: myaspnetmvcapp

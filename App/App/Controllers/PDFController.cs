@@ -45,55 +45,70 @@ public class PDFController : ControllerBase
     [HttpGet("ConvertHtmlToPdf")]
     public async Task<ActionResult> HtmlToPdf([FromServices] GotenbergSharpClient sharpClient)
     {
-        var randomCustomer = await _context.aplikacja_userdata.ToListAsync();
-        var randomcustomer = randomCustomer[new Random().Next(randomCustomer.Count)];
-        
-        var eve = await _context.aplikacja_event.ToListAsync();
-        var ev = eve[new Random().Next(eve.Count)];
-        
-        var randomticket = await _context.aplikacja_ticket
-            .FirstOrDefaultAsync(t => t.event_id == ev.id);
-        
-        var user = await _context.aplikacja_user
-            .FirstOrDefaultAsync(u => u.id == randomcustomer.UserId);
-        
-        
-        string qrCodeContent = GenerateQrCode(randomticket.id.ToString());
+        try
+        {
+            var randomCustomer = await _context.aplikacja_userdata.ToListAsync();
+            var randomcustomer = randomCustomer[new Random().Next(randomCustomer.Count)];
 
-        string htmlContent = GenerateHtmlContent(randomticket, randomcustomer, user, ev, qrCodeContent);
-        
-                var builder = new HtmlRequestBuilder()
-                    .AddDocument(doc =>
-                        doc.SetBody(htmlContent)
-                    ).WithDimensions(dims =>
-                    {
-                        dims.SetPaperSize(PaperSizes.A3)
-                            .SetMargins(Margins.None)
-                            .SetScale(.99);
-                    });
+            var eve = await _context.aplikacja_event.ToListAsync();
+            var ev = eve[new Random().Next(eve.Count)];
 
-                var req = await builder.BuildAsync();
-                
-                using (var resulStream = await sharpClient.HtmlToPdfAsync(req))
+            var randomticket = await _context.aplikacja_ticket
+                .FirstOrDefaultAsync(t => t.event_id == ev.id);
+
+            var user = await _context.aplikacja_user
+                .FirstOrDefaultAsync(u => u.id == randomcustomer.UserId);
+
+            if (randomticket == null || ev == null || randomcustomer == null)
+            {
+                return BadRequest("Nie udało się pobrać wymaganych danych.");
+            }
+
+            string qrCodeContent = GenerateQrCode(randomticket.id.ToString());
+
+            string htmlContent = GenerateHtmlContent(randomticket, randomcustomer, user, ev, qrCodeContent);
+
+            var builder = new HtmlRequestBuilder()
+                .AddDocument(doc =>
+                    doc.SetBody(htmlContent)
+                ).WithDimensions(dims =>
                 {
-                    if (resulStream != null)
+                    dims.SetPaperSize(PaperSizes.A3)
+                        .SetMargins(Margins.None)
+                        .SetScale(.99);
+                });
+
+            var req = await builder.BuildAsync();
+
+            using (var resulStream = await sharpClient.HtmlToPdfAsync(req))
+            {
+                if (resulStream != null)
+                {
+                    string folderPath = Path.Combine(_hostingEnvironment.ContentRootPath, "GeneratedTickets");
+                    Directory.CreateDirectory(folderPath);
+
+                    string fileName = $"ticket-{Rand.Next()}.pdf";
+                    string filePath = Path.Combine(folderPath, fileName);
+
+                    using (var fileStream = System.IO.File.Create(filePath))
                     {
-                        string folderPath = Path.Combine(_hostingEnvironment.ContentRootPath, "GeneratedTickets");
-                        Directory.CreateDirectory(folderPath);
-                        
-                        string fileName = $"ticket-{Rand.Next()}.pdf";
-                        string filePath = Path.Combine(folderPath, fileName);
-
-                        using (var fileStream = System.IO.File.Create(filePath))
-                        {
-                            await resulStream.CopyToAsync(fileStream);
-                        }
+                        await resulStream.CopyToAsync(fileStream);
+                        //return this.File(result, "application/pdf", $"ticket-{Rand.Next()}.pdf");
                     }
+                    
+                    return Ok("Poprawnie wygenerowano bilety");
                 }
-                //return this.File(result, "application/pdf", $"ticket-{Rand.Next()}.pdf");
+                else
+                {
+                    return BadRequest("Problem podczas konwertowania szablonu html biletu na PDF");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Wystapił problem, {ex.Message}");
+        }
 
-        return Ok("Poprawnie wygenerowano bilety");
-        
         //string htmlFilePath = Path.Combine(_hostingEnvironment.ContentRootPath, "Templates/index.html");
         //string htmlContent = System.IO.File.ReadAllText(htmlFilePath);
     }
@@ -132,7 +147,7 @@ public class PDFController : ControllerBase
 
             <div>
                 <p>Email: {user.username}   </p>
-                <p>Numer telefonu klienta: {customer.phonenumber}   </p>
+                <p>Numer telefonu klienta: {customer.phoneNumber}   </p>
             </div>
 
 
@@ -156,23 +171,6 @@ public class PDFController : ControllerBase
         </body>
         </html>
     ";
-    }
-
-    //pobieranie losowego klienta z bazy jesli taki istnieje
-    private async Task<Customer> GetRandomCustomer()
-    {
-        var allCustomers = await _context.aplikacja_userdata
-            .Include(c => c.User) 
-            .ToListAsync();
-        
-        if (allCustomers == null || allCustomers.Count == 0)
-        {
-            return null;
-        }
-        
-        var random = new Random();
-        int randomIndex = random.Next(0, allCustomers.Count);
-        return allCustomers[randomIndex];
     }
     
     //generowanie kodu QR na podstawie id biletu

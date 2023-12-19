@@ -64,7 +64,7 @@ public class GenerateFakeData : Controller
             .RuleFor(c => c.firstName, f => f.Person.FirstName)
             .RuleFor(c => c.lastName, f => f.Person.LastName)
             .RuleFor(c => c.Email, f => f.Person.Email)
-            .RuleFor(c => c.phonenumber, f => f.Random.Replace("#########"))
+            .RuleFor(c => c.phoneNumber, f => f.Random.Replace("#########"))
             .RuleFor(c => c.UserId, f => GenerateUniqueUserId(usedUserIds, fakeUsers));
         
         var customers = fakerCustomer.Generate(100000);
