@@ -1,11 +1,17 @@
 .slider {
-  width: 1440px;
-  height: 601px;
-  flex-shrink: 0;
-  background: #FCFCFD;
   display: flex;
-  flex-direction: row;
-
+  width: 100%;
+  min-width: 900px;
+  max-width: calc(1440px - 320px);
+  padding: 20px 0;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FCFCFD;
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+  flex-wrap: wrap;
+  padding-top: 105px;
   .svg-box {
     display: flex;
     width: 372px;
@@ -13,35 +19,26 @@
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    margin-top: 104px;
-    margin-left: 160px;
   }
 
   .frame {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 591px;
-    height: 208px;
-    margin-top: 224px;
-    margin-left: 195px;
-
+    max-width: 600px;
+    margin-top: 100px;
     .topic {
-      width: 591px;
-      height: 127px;
       color: #141416;
       font-family: DM Sans;
       font-size: 64px;
       font-style: normal;
       font-weight: 700;
-      line-height: 64px; /* 100% */
-      letter-spacing: -1.28px;
+      line-height: 64px;
+      letter-spacing: -1px;
       margin: 0px;
     }
 
     .under-topic {
-      width: 549px;
-      height: 49px;
       color: #000;
       margin: 0px;
       margin-top: 32px;
@@ -49,17 +46,17 @@
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
-      line-height: 24px; /* 150% */
+      line-height: 24px;
     }
   }
-
   .dots-box {
-    position: absolute;
-    width: 80px;
-    height: 9px;
-    margin-left: 680px;
-    margin-top: 575px;
-    margin-bottom: 17px;
-
+    min-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

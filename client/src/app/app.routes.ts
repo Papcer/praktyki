@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create-account', component: CreateAccountComponent },
   { path: 'home', component: HomeComponent },
-  { path: '', component: ProductsComponent },
-  { path: 'product-info', component: ProductInfoComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: '', component: ProductInfoComponent },
 
 ];

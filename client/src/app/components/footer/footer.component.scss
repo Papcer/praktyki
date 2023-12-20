@@ -1,9 +1,16 @@
 .main{
-  width: 1440px;
+  width: 100%;
+  min-width: 900px;
   display: flex;
+  max-width: calc(1440px - 320px);
+  padding: 20px 0;
   flex-direction: column;
   justify-content: center;
-  background-color: #F4F5F6;;
+  background-color: #F4F5F6;
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+
   .title{
     color: #141416;
     font-feature-settings: 'clig' off, 'liga' off;
@@ -18,10 +25,11 @@
   .frame{
     display: flex;
     flex-direction: row;
-    margin-left: 222px;
-    margin-right: 222px;
+    margin-left: 60px;
+    margin-right: 60px;
     margin-top: 32px;
     justify-content: space-between;
+
     .section{
       display: flex;
       flex-direction: column;
@@ -62,14 +70,14 @@
     margin-top: 32px;
     display: inline-flex;
     height: 64px;
-    padding: 21px 161px 21px 222px;
-    justify-content: flex-end;
+    margin-left: 60px;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 625px;
+
     flex-shrink: 0;
     .language{
       display: flex;
-      width: 111px;
+      width: 120px;
       height: 22px;
       padding-right: 1px;
       justify-content: center;
@@ -88,7 +96,7 @@
     .copyright{
       color: #95A1BB;
       margin: 0px;
-      width: 320px;
+      max-width: 350px;
       text-align: right;
       font-feature-settings: 'clig' off, 'liga' off;
       font-family: Poppins;
