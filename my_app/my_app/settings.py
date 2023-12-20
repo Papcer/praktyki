@@ -91,7 +91,7 @@ ROOT_URLCONF = 'my_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'my_app', 'templates','aplikacja')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -206,3 +206,17 @@ JWT_AUTH = {
 }
 
 AUTH_USER_MODEL = 'aplikacja.User'
+
+EMAIL_VERIFICATION_URL = 'http://127.0.0.1:8000/verify_email/'
+EMAIL_FROM = "admin@admin.pl"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'ce5acadd3454c4'
+EMAIL_HOST_PASSWORD = 'ea57302b3025b8'
+EMAIL_PORT = '2525'
+
+CELERY_BROKER_URL = 'pyamqp://guest:guest@rabbitmq:5672//'
+CELERY_RESULT_BACKEND = 'rpc://'
+
+

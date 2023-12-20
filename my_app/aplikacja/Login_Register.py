@@ -1,3 +1,5 @@
+import threading
+
 from django.contrib.auth import login, logout
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -7,7 +9,10 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User, Role, UserRoles, Event,UserData
 from drf_yasg import openapi
-
+import pika
+from django.core.mail import send_mail
+from django.conf import settings
+from aplikacja.tasks import send_verification_email
 
 @swagger_auto_schema(
     method='post',
@@ -30,13 +35,11 @@ from drf_yasg import openapi
 @csrf_exempt
 def register(request):
     """
-     Api pozwalające zarejestrować nowego użytkownika
+     Api pozwalające zarejestrować nowego użytkownika, po rejestracji na podany adres zostaje wysłany link do weryfikacji konta
      Wymagane paramtry:
          -username: login użytkownika
          -password: hasło użytkownika
-         
      """
-    
     if request.method == 'POST':
         username = request.data.get('username')
         password = request.data.get('password')
@@ -45,7 +48,25 @@ def register(request):
             return JsonResponse({'error': 'Wymagane sa nazwa i haslo.'}, status=400)
 
         user = User.create_user(username=username, password=password)
-        return JsonResponse({'message': 'Pomyslnie zarejestrowano uzytkownika.'}, status=201)
+
+        send_verification_email.apply_async(args=[user.id], countdown=5)
+
+    return JsonResponse({'message': 'Pomyslnie zarejestrowano uzytkownika.'}, status=201)
+
+
+@api_view(["GET"])
+@csrf_exempt
+@permission_classes([AllowAny])
+def verify_email(request, user_id):
+    try:
+        user = User.objects.get(pk=user_id)
+        user.email_verified = True
+        user.save()
+        
+        return JsonResponse({'message': "Adres e-mail został pomyslnie zweryfikowany"})
+    except Exception as e:
+        return JsonResponse({'error': str(e)})
+
 
 @swagger_auto_schema(
     method='post',
@@ -72,7 +93,6 @@ def login_view(request):
     Wymagane paramtry:
         -username: login użytkownika
         -password: hasło użytkownika
-        
     """
     if request.method == 'POST':
         username = request.data.get('username')

@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  aspnet:
+    build:
+      context: ./App
+    container_name: aspnet_app
+    ports:
+      - "8080:80"
+    networks:
+      - mynetwork
+    depends_on:
+      - my_postgres
+
   gotenberg:
     image: thecodingmachine/gotenberg:latest 
     container_name: mygotenberg
@@ -37,6 +48,7 @@ services:
         - my_postgres
       networks:
         - mynetwork
+      command: bash -c "python manage.py runserver 0.0.0.0:8000 && celery -A my_app worker -l info"
  
   angular_app:
      build:
@@ -48,7 +60,28 @@ services:
        - mynetwork
      depends_on:
        - my_django_app
+  
+  rabbit:
+     image: rabbitmq:3.12-management
+     container_name: rabbitmq
+     ports:
+       - "5672:5672"
+       - "15672:15672"
+     depends_on:
+       - my_postgres
+     networks:
+       - mynetwork
 
+  celery_worker:
+     build:
+       context: ./my_app  
+     container_name: celery_worker
+     depends_on:
+       - my_postgres
+       - rabbit
+     networks:
+       - mynetwork
+     command: celery -A my_app worker -l info
       
 #  aspnetmvcapp:
 #    image: your-aspnet-mvc-image:latest  # Zastąp to odpowiednią nazwą obrazu ASP.NET MVC

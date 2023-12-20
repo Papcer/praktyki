@@ -22,7 +22,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from aplikacja.Login_Register import register, login_view,  logout_view
+from aplikacja.Login_Register import register, login_view,  logout_view , verify_email
 from aplikacja.GoogleEvents import save_google_calendar, get_google_events, delete_event, edit_event,get_single_google_event
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -37,10 +37,6 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
-
-
-
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -61,5 +57,8 @@ urlpatterns = [
     path('delete_event/<str:event_id>/', delete_event, name='logout'),
     
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0),name='schema-swagger-ui'),
+
+    path('verify_email/<int:user_id>/', verify_email, name='verify_email'),
+
 ]
 
