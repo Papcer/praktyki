@@ -1,41 +1,54 @@
 @import '../../_variables.scss';
 
+
 .body {
-  width: 1440px;
-  height: 950px;
+  width: 100vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
-  background-color: #FCFCFD;
+  align-items: center;
+  background: #FFF;
+
+
+  .sidenav {
+    width: 48vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    background: #353945;
+  }
 
   .line {
     width: 1px;
-    height: 950px;
     background: #EDF2F7;
     border: 1px;
     margin-right: 1px;
   }
 
   .main {
-    margin-left: 25px;
     margin-top: 34px;
-    padding-top: 50px;
+    margin-left: 25px;
     padding-bottom: 50px;
+    padding-top: 50px;
     border: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    box-sizing: border-box;
+    min-width: 51vw;
+    min-height: 100%;
 
-    //box-sizing: border-box;
-    height: 782px;
-    width: 648px;
 
-    .form-login {
+    .form-register {
       display: flex;
       border: 0;
       box-sizing: border-box;
-      width: 424px;
-      height: 524px;
+      max-width: 424px;
+      max-height: 524px;
       flex-direction: column;
       align-items: flex-start;
       gap: 30px;
@@ -44,12 +57,11 @@
       h2 {
         align-self: stretch;
         color: #27272E;
-        /* Headings/h2 */
         font-family: Inter;
         font-size: 28px;
         font-style: normal;
         font-weight: 600;
-        line-height: 136.023%;
+        line-height: 136%;
         margin: 0px;
       }
 
@@ -61,17 +73,14 @@
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
-        line-height: 162.023%; /* 25.924px */
+        line-height: 162%;
         margin: 0px;
         margin-top: 12px;
-
       }
-
     }
 
     .form {
       display: flex;
-      width: 424px;
       padding-top: 24px;
       flex-direction: column;
       align-items: flex-start;
@@ -80,9 +89,10 @@
 
       .box {
         width: 100%;
+        box-sizing: border-box;
 
         .p-forgot-password {
-          width: 424px;
+          max-width: 424px;
           color: #777E90;
           text-align: right;
           font-feature-settings: 'clig' off, 'liga' off;
@@ -90,7 +100,7 @@
           font-size: 11px;
           font-style: normal;
           font-weight: 400;
-          line-height: 12px; /* 109.091% */
+          line-height: 12px;
           margin-top: 8px;
         }
       }
@@ -110,15 +120,15 @@
       .input {
         display: flex;
         height: 46px;
-        padding: 14px 50px 16px 16px;
+        padding: 14px 16px 16px 16px;
         align-items: center;
         align-self: stretch;
         border-radius: 6px;
         border: 0px;
         box-sizing: border-box;
-        background: #EDF2F7;
+        background-color: #F4F5F6;
         color: #7A828A;
-        width: 100%;
+        width: 424px;
         margin-top: 8px;
         //font
         font-feature-settings: 'clig' off, 'liga' off;
@@ -127,6 +137,23 @@
         font-style: normal;
         font-weight: 500;
         line-height: 15px;
+      }
+
+      .box-row {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        .p-checbox {
+          color: #425466;
+
+          font-family: Inter;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 20px;
+
+        }
       }
     }
 
@@ -138,7 +165,7 @@
       margin-bottom: 24px;
 
       .social-line {
-        width: 114px;
+        max-width: 114px;
         height: 1px;
         background: #EDF2F7;
       }
@@ -151,27 +178,28 @@
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
-        line-height: 18px; /* 150% */
+        line-height: 18px;
         letter-spacing: -0.08px;
-        margin: 0px;
-        padding: 0px;
-        margin-left: 24px;
-        margin-right: 24px;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
-    .social-icons{
+
+    .social-icons {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       gap: 32px;
-      width: 220px;
+      max-width: 220px;
       height: 52px;
       margin: auto;
-      .svg-icon{
+
+      .svg-icon {
         width: 52px;
         height: 52px;
       }
-      .google-icon-background{
+
+      .google-icon-background {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -185,12 +213,14 @@
         box-shadow: 0px 1px 3px 0px rgba(50, 50, 71, 0.10), 0px 0px 1px 0px rgba(12, 26, 75, 0.20);
       }
     }
+
     .p-frame {
-      width: 214px;
       height: 24px;
       padding: 10px;
       display: flex;
       flex-direction: row;
+      margin-left: auto;
+      margin-right: auto;
 
       h6 {
         font-family: Inter;
@@ -198,7 +228,7 @@
         font-style: normal;
         font-weight: 600;
         line-height: 24px;
-        margin: 0px;
+        margin: 0;
       }
 
       .regular-text {
@@ -212,3 +242,65 @@
     }
   }
 }
+
+
+
+
+@media only screen and (min-width: 1025px) {
+  .body .main .form .input {
+    width: 424px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .body {
+    align-items: flex-start;
+    .sidenav {;
+    }
+    .main {
+      margin: 0;
+
+      .form {
+        max-width: 350px;
+        .input {
+          max-width: 350px;
+        }
+        .box-row {
+          .p-checbox {
+            max-width: 350px;
+
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .body {
+    flex-direction: column;
+    .sidenav {
+      width: 100%;
+    }
+    .main {
+      width: 100%;
+      height: 100vh;
+      margin: 0;
+      .form {
+
+        max-width: 300px;
+        .input {
+          max-width: 300px;
+        }
+        .box-row {
+          .p-checbox {
+            max-width: 300px;
+
+          }
+        }
+      }
+    }
+  }
+}
+
+

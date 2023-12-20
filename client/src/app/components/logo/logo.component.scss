@@ -1,6 +1,5 @@
 .logo{
   display: flex;
-  position: absolute;
   width: 178px;
   height: 66px;
   padding: 16px 24px;
@@ -10,8 +9,6 @@
   flex-shrink: 0;
   border-radius: 90px;
   background: #FCFCFD;
-  margin-top: 52px;
-  margin-left: 52px;
   border: 0;
   box-sizing: border-box;
   .svg-star{
@@ -25,7 +22,7 @@
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
-    line-height: 16px; /* 100% */
+    line-height: 16px;
   }
 
 }
