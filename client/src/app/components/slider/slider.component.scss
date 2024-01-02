@@ -1,8 +1,15 @@
+.main{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .slider {
   display: flex;
   width: 100%;
-  min-width: 900px;
-  max-width: calc(1440px - 320px);
+  max-width: var(--content-width);
   padding: 20px 0;
   justify-content: space-between;
   align-items: center;
@@ -12,6 +19,7 @@
   margin-left: auto;
   flex-wrap: wrap;
   padding-top: 105px;
+  padding: 0 20px ;
   .svg-box {
     display: flex;
     width: 372px;
@@ -25,7 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    max-width: 600px;
+    max-width: 450px;
     margin-top: 100px;
     .topic {
       color: #141416;
@@ -59,4 +67,55 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+
+
+@media only screen and (min-width: 1025px) {
+  .main {}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .slider {
+    min-width: 600px;
+    padding-top: 50px;
+    .svg-box {
+      width: 260px;
+      height: 260px;
+    }
+
+    .frame{
+      max-width: 450px;
+      h1{
+        font-size: 64px;
+        line-height: 64px;
+      }
+    }
+    .dots-box{
+      margin-top: 120px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .slider {
+    background-color: var(--color-light);
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    .frame{
+      margin-top: 0px;
+    }
+    .dots-box {
+      display: none !important;
+    }
+    .svg-box {
+      width: 100px;
+      height: 100px;
+      margin-top: 65px;
+      margin-bottom: 50px;
+    }
+  }
+
 }

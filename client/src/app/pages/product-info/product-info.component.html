@@ -1,51 +1,48 @@
-<div class="main">
-
-  <div class="padding-and-space white">
-    <div class="content-box-margin white">
-      <app-menu></app-menu>
-    </div>
+<div class="margin-bg-super-light">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav__left">
+        <a class="nav__logo">
+          <img class="svg-star" src="../../assets/svg/star.svg" alt="Star" />
+          <p class="p-logo">LOGO</p>
+        </a>
+        <div class="nav__divider"></div>
+        <a class="nav__item">Home</a>
+        <a class="nav__item">Discover</a>
+        <a class="nav__item">Blog</a>
+        <a class="nav__item">About Us</a>
+        <a class="nav__item">Contact</a>
+      </div>
+      <div class="nav__right">
+        <a class="nav__icon">
+          <img src="../../assets/svg/shopping-cart.svg" alt="basket icon" />
+          <div class="nav__badge"><p class="nav__p">2</p></div>
+        </a>
+        <a class="nav__icon">
+          <img src="../../assets/svg/account.svg" alt="account icon" />
+        </a>
+      </div>
+    </nav>
   </div>
+</div>
 
-  <!-- section 1 -->
-  <div class="padding-and-space dark">
-    <div class="content-box-margin dark">
-      <div class="section-box dark">
-        <div class="frame">
-          <h1>Bibendum et sit aliquam!</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sapien, est felis, sagittis viverra nulla mattis
-            scelerisque. Eget cras integer.</p>
-          <button class="button-dark-16 btn-change">Discover Menu</button>
-        </div>
-        <div class="svg-box">
-          <svg xmlns="http://www.w3.org/2000/svg" width="326" height="256" viewBox="0 0 326 256" fill="none">
-            <path
-              d="M314.125 0.125H11.875C5.44492 0.125 0.25 5.31992 0.25 11.75V244.25C0.25 250.68 5.44492 255.875 11.875 255.875H314.125C320.555 255.875 325.75 250.68 325.75 244.25V11.75C325.75 5.31992 320.555 0.125 314.125 0.125ZM99.7891 52.4375C112.613 52.4375 123.039 62.8637 123.039 75.6875C123.039 88.5113 112.613 98.9375 99.7891 98.9375C86.9652 98.9375 76.5391 88.5113 76.5391 75.6875C76.5391 62.8637 86.9652 52.4375 99.7891 52.4375ZM286.479 211.228C285.95 211.672 285.281 211.917 284.59 211.918H41.3734C39.775 211.918 38.4672 210.61 38.4672 209.012C38.4672 208.321 38.7215 207.668 39.1574 207.123L101.024 133.74C102.041 132.505 103.894 132.359 105.129 133.377C105.238 133.486 105.384 133.595 105.493 133.74L141.603 176.607L199.038 108.492C200.055 107.257 201.907 107.111 203.143 108.129C203.252 108.237 203.397 108.346 203.506 108.492L286.915 207.159C287.86 208.358 287.714 210.211 286.479 211.228Z"
-              fill="#777E91"/>
+<app-menu></app-menu>
+
+<div class="margin-bg-light">
+  <div class="container padding-top-bot-160">
+    <div class="content row ">
+      <div class="content__text-wrapper column *">
+        <h1>Bibendum et sit aliquam!</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sapien, est felis, sagittis viverra nulla mattis scelerisque. Eget cras integer.</p>
+        <button class="button">Discover Menu</button>
+      </div>
+    </div>
+    <div class="content ">
+      <div class="content__img-wrapper *">
+        <svg xmlns="http://www.w3.org/2000/svg" width="326" height="256" viewBox="0 0 326 256" fill="none">
+          <path d="M314.125 0.125H11.875C5.44492 0.125 0.25 5.31992 0.25 11.75V244.25C0.25 250.68 5.44492 255.875 11.875 255.875H314.125C320.555 255.875 325.75 250.68 325.75 244.25V11.75C325.75 5.31992 320.555 0.125 314.125 0.125ZM99.7891 52.4375C112.613 52.4375 123.039 62.8637 123.039 75.6875C123.039 88.5113 112.613 98.9375 99.7891 98.9375C86.9652 98.9375 76.5391 88.5113 76.5391 75.6875C76.5391 62.8637 86.9652 52.4375 99.7891 52.4375ZM286.479 211.228C285.95 211.672 285.281 211.917 284.59 211.918H41.3734C39.775 211.918 38.4672 210.61 38.4672 209.012C38.4672 208.321 38.7215 207.668 39.1574 207.123L101.024 133.74C102.041 132.505 103.894 132.359 105.129 133.377C105.238 133.486 105.384 133.595 105.493 133.74L141.603 176.607L199.038 108.492C200.055 107.257 201.907 107.111 203.143 108.129C203.252 108.237 203.397 108.346 203.506 108.492L286.915 207.159C287.86 208.358 287.714 210.211 286.479 211.228Z" fill="#777E91"/>
           </svg>
-        </div>
       </div>
     </div>
   </div>
-      <!-- section 1 -->
-  <div class="padding-and-space white">
-      <div class="content-box-margin white">
-      <app-slider [title]="'Nibh in dolor bibendum.'"
-                  [text]="'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sapien, est felis, sagittis viverra nulla mattis scelerisque. Eget cras integer.'"></app-slider>
-    </div>
-  </div>
-
-
-  <div class="padding-and-space dark">
-    <div class="content-box-margin dark">
-  <app-footer></app-footer>
-    </div>
-  </div>
-
 </div>
-
-
-
-
-
-
-

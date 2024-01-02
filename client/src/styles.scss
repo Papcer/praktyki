@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+//@import 'swiper/swiper.scss';
+
+
+
+:root {
+  --color-light: #F4F5F6;
+  --color-super-light: #FFF;
+  --color-dark: #23262F;
+  --content-width: 1120px;
+}
+
+
+
+
 @font-face {
   font-family: 'DM Sans';
   src: local('DM Sans'), url('/assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('woff2');
@@ -73,3 +88,8 @@ body{
 p{
   margin: 0px;
 }
+
+
+
+
+
