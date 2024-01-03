@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using App.Context;
 using App.Models;
+using App.Services;
 using Bogus;
 using Gotenberg.Sharp.API.Client;
 using Gotenberg.Sharp.API.Client.Domain.Builders;
@@ -11,8 +12,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
 using SkiaSharp;
+using StackExchange.Redis;
 using ZXing;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using Ticket = App.Models.Ticket;
 
 namespace App.Controllers;
 
@@ -22,15 +25,17 @@ public class PDFController : ControllerBase
 {
     private readonly IHostingEnvironment _hostingEnvironment;
     private readonly ApplicationContext _context;
+    private readonly RedisService _redisService;
     
     //losowy numer do nazwy biletu
     static Random Rand = new Random(Math.Abs( (int) DateTime.Now.Ticks));
 
   
-    public PDFController(IHostingEnvironment hostingEnvironment, ApplicationContext context)
+    public PDFController(IHostingEnvironment hostingEnvironment, ApplicationContext context, RedisService redisService)
     {
         _hostingEnvironment = hostingEnvironment;
         _context = context;
+        _redisService = redisService;
     }
     
     /// <summary>
@@ -43,8 +48,68 @@ public class PDFController : ControllerBase
     /// <response code="200">Plik biletu został wygenerowany</response>
     /// <response code="400">Bład podczas generowania</response>
     [HttpGet("ConvertHtmlToPdf")]
-    public async Task<ActionResult> HtmlToPdf([FromServices] GotenbergSharpClient sharpClient)
+    public async Task<ActionResult> HtmlToPdf([FromServices] GotenbergSharpClient sharpClient, int? ticketID)
     {
+        var randomticket = new Ticket();
+        var customer = new Customer();
+        var even = new Event();
+        var user = new User();
+
+        if (ticketID != null)
+        {
+            string redisKey = $"TicketData:{ticketID}";
+            byte[] pdfBytes = await _redisService.GetAsync(redisKey);
+            if (pdfBytes != null)
+            {
+                return File(pdfBytes, "application/pdf", $"ticket-{ticketID}.pdf");
+            }
+            else
+            {
+
+                randomticket = await _context.aplikacja_ticket
+                    .FirstOrDefaultAsync(t => t.id == ticketID);
+
+                customer = await _context.aplikacja_userdata.FirstOrDefaultAsync(u =>
+                    u.UserId == randomticket.userdata_id);
+
+                user = await _context.aplikacja_user
+                    .FirstOrDefaultAsync(u => u.id == customer.UserId);
+
+                even = await _context.aplikacja_event.FirstOrDefaultAsync(a =>
+                    a.id == randomticket.event_id);
+
+                string qrCodeContent = GenerateQrCode(randomticket.id.ToString());
+                string htmlContent = GenerateHtmlContent(randomticket, customer, user, even, qrCodeContent);
+
+                var builder = new HtmlRequestBuilder()
+                    .AddDocument(doc =>
+                        doc.SetBody(htmlContent)
+                    ).WithDimensions(dims =>
+                    {
+                        dims.SetPaperSize(PaperSizes.A3)
+                            .SetMargins(Margins.None)
+                            .SetScale(.99);
+                    });
+
+                var req = await builder.BuildAsync();
+
+                using (var resultStream = await sharpClient.HtmlToPdfAsync(req))
+                {
+                    if (resultStream != null)
+                    {
+                        // Zapisz plik PDF do Redis
+                        byte[] pdfBytess = await ToByteArrayAsync(resultStream);
+                        await _redisService.SetAsync(redisKey, pdfBytess, TimeSpan.FromHours(12));
+                        return File(pdfBytess, "application/pdf", $"ticket-{randomticket.id}.pdf");
+                    }
+                    else
+                    {
+                        return BadRequest("Problem podczas konwertowania szablonu html biletu na PDF");
+                    }
+                }
+            }
+        }
+
         try
         {
             var randomCustomer = await _context.aplikacja_userdata.ToListAsync();
@@ -53,10 +118,19 @@ public class PDFController : ControllerBase
             var eve = await _context.aplikacja_event.ToListAsync();
             var ev = eve[new Random().Next(eve.Count)];
 
-            var randomticket = await _context.aplikacja_ticket
+            if (ticketID != null)
+            {
+                randomticket = await _context.aplikacja_ticket
+                    .FirstOrDefaultAsync(t => t.id == ticketID);
+            }
+            else
+            {
+                randomticket = await _context.aplikacja_ticket
                 .FirstOrDefaultAsync(t => t.event_id == ev.id);
+            }
 
-            var user = await _context.aplikacja_user
+
+            user = await _context.aplikacja_user
                 .FirstOrDefaultAsync(u => u.id == randomcustomer.UserId);
 
             if (randomticket == null || ev == null || randomcustomer == null)
@@ -64,53 +138,74 @@ public class PDFController : ControllerBase
                 return BadRequest("Nie udało się pobrać wymaganych danych.");
             }
 
-            string qrCodeContent = GenerateQrCode(randomticket.id.ToString());
+            string redisKey = $"TicketData:{randomticket.id}";
+            byte[] pdfBytes = await _redisService.GetAsync(redisKey);
 
-            string htmlContent = GenerateHtmlContent(randomticket, randomcustomer, user, ev, qrCodeContent);
-
-            var builder = new HtmlRequestBuilder()
-                .AddDocument(doc =>
-                    doc.SetBody(htmlContent)
-                ).WithDimensions(dims =>
-                {
-                    dims.SetPaperSize(PaperSizes.A3)
-                        .SetMargins(Margins.None)
-                        .SetScale(.99);
-                });
-
-            var req = await builder.BuildAsync();
-
-            using (var resulStream = await sharpClient.HtmlToPdfAsync(req))
+            //jesli nie ma wpisu w redis, generuj dokument
+            if (pdfBytes == null)
             {
-                if (resulStream != null)
-                {
-                    string folderPath = Path.Combine(_hostingEnvironment.ContentRootPath, "GeneratedTickets");
-                    Directory.CreateDirectory(folderPath);
+                string qrCodeContent = GenerateQrCode(randomticket.id.ToString());
+                string htmlContent = GenerateHtmlContent(randomticket, randomcustomer, user, ev, qrCodeContent);
 
-                    string fileName = $"ticket-{Rand.Next()}.pdf";
-                    string filePath = Path.Combine(folderPath, fileName);
-
-                    using (var fileStream = System.IO.File.Create(filePath))
+                var builder = new HtmlRequestBuilder()
+                    .AddDocument(doc =>
+                        doc.SetBody(htmlContent)
+                    ).WithDimensions(dims =>
                     {
-                        await resulStream.CopyToAsync(fileStream);
-                        //return this.File(result, "application/pdf", $"ticket-{Rand.Next()}.pdf");
-                    }
-                    
-                    return Ok("Poprawnie wygenerowano bilety");
-                }
-                else
+                        dims.SetPaperSize(PaperSizes.A3)
+                            .SetMargins(Margins.None)
+                            .SetScale(.99);
+                    });
+
+                var req = await builder.BuildAsync();
+
+                using (var resultStream = await sharpClient.HtmlToPdfAsync(req))
                 {
-                    return BadRequest("Problem podczas konwertowania szablonu html biletu na PDF");
+                    if (resultStream != null)
+                    {
+                        // Zapisz plik PDF do Redis
+                        byte[] pdfBytess = await ToByteArrayAsync(resultStream);
+                        await _redisService.SetAsync(redisKey, pdfBytess, TimeSpan.FromHours(12));
+                        return File(pdfBytess, "application/pdf", $"ticket-{randomticket.id}.pdf");
+                       
+                        /*
+                        string folderPath = Path.Combine(_hostingEnvironment.ContentRootPath, "GeneratedTickets");
+                        Directory.CreateDirectory(folderPath);
+
+                        string fileName = $"ticket-{Rand.Next()}.pdf";
+                        string filePath = Path.Combine(folderPath, fileName);
+
+                        using (var fileStream = System.IO.File.Create(filePath))
+                        {
+                            await resultStream.CopyToAsync(fileStream);
+                            
+                        }  */
+                    }
+                    else
+                    {
+                        return BadRequest("Problem podczas konwertowania szablonu html biletu na PDF");
+                    }
                 }
+            }
+            else
+            {
+                // Jeśli plik PDF jest już w Redis, zwróć go bez ponownej konwersji
+                return File(pdfBytes, "application/pdf", $"ticket-{randomticket.id}.pdf");
             }
         }
         catch (Exception ex)
         {
-            return StatusCode(500, $"Wystapił problem, {ex.Message}");
+            return StatusCode(500, $"Wystąpił problem: {ex.Message}");
         }
+    }
 
-        //string htmlFilePath = Path.Combine(_hostingEnvironment.ContentRootPath, "Templates/index.html");
-        //string htmlContent = System.IO.File.ReadAllText(htmlFilePath);
+    public static async Task<byte[]> ToByteArrayAsync(Stream stream)
+    {
+        using (MemoryStream memoryStream = new MemoryStream())
+        {
+            await stream.CopyToAsync(memoryStream);
+            return memoryStream.ToArray();
+        }
     }
     
     //generowanie szablonu html biletu

@@ -54,16 +54,22 @@ def register(request):
     return JsonResponse({'message': 'Pomyslnie zarejestrowano uzytkownika.'}, status=201)
 
 
-@api_view(["GET"])
+
+@api_view(['PUT'])
 @csrf_exempt
 @permission_classes([AllowAny])
 def verify_email(request, user_id):
+    """
+    Api pozwalające zweryfikować adres email użytkownika. Wywoływane po pomyślnej rejestraji użytkownika
+    Wymagane paramtry:
+        -user_id: identyfikator użytkownika
+    """
     try:
         user = User.objects.get(pk=user_id)
         user.email_verified = True
         user.save()
         
-        return JsonResponse({'message': "Adres e-mail został pomyslnie zweryfikowany"})
+        return JsonResponse({'message': "Adres e-mail zostal pomyslnie zweryfikowany"})
     except Exception as e:
         return JsonResponse({'error': str(e)})
 

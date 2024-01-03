@@ -1,11 +1,14 @@
 using System.Reflection;
 using App.Context;
+using App.Services;
+using EasyNetQ;
 using Gotenberg.Sharp.API.Client;
 using Gotenberg.Sharp.API.Client.Domain.Settings;
 using Gotenberg.Sharp.API.Client.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +57,25 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 
 builder.Services.AddOptions<GotenbergSharpClientOptions>()
     .Bind(builder.Configuration.GetSection(nameof(GotenbergSharpClient)));
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(provider =>
+{
+    var redisConfig = builder.Configuration.GetConnectionString("RedisConnection");
+    var connectionMultiplexer = ConnectionMultiplexer.Connect(redisConfig);
+    connectionMultiplexer.ConnectionFailed += (_, e) => Console.WriteLine($"Connection failed: {e.Exception}");
+    connectionMultiplexer.ConnectionRestored += (_, e) => Console.WriteLine("Connection restored");
+    
+    return connectionMultiplexer;
+});
+
+builder.Services.AddSingleton<IBus>(provider =>
+{
+    var rabbitMqConfig = builder.Configuration.GetConnectionString("RabbitConnection");
+    return RabbitHutch.CreateBus(rabbitMqConfig);
+});
+
+
+builder.Services.AddSingleton<RedisService>();
 
 builder.Services.AddGotenbergSharpClient();
 

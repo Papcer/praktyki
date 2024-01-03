@@ -82,6 +82,13 @@ services:
      networks:
        - mynetwork
      command: celery -A my_app worker -l info
+
+  redis:
+     image: redis
+     ports: 
+       - "6379:6379"
+     networks:
+       - mynetwork
       
 #  aspnetmvcapp:
 #    image: your-aspnet-mvc-image:latest  # Zastąp to odpowiednią nazwą obrazu ASP.NET MVC

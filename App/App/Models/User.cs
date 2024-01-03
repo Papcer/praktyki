@@ -14,4 +14,6 @@ public class User
     /// Hasło klienta
     /// </summary>
     public string password { get; set; }
+
+    public bool email_verified { get; set; }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\PRAKTYKI\\Aplikacja ASP\\App\\App\\App.csproj": {}
+    "F:\\PRAKTYKI\\Aplikacja ASP\\App\\App\\App.csproj": {}
   },
   "projects": {
-    "G:\\PRAKTYKI\\Aplikacja ASP\\App\\App\\App.csproj": {
+    "F:\\PRAKTYKI\\Aplikacja ASP\\App\\App\\App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\PRAKTYKI\\Aplikacja ASP\\App\\App\\App.csproj",
+        "projectUniqueName": "F:\\PRAKTYKI\\Aplikacja ASP\\App\\App\\App.csproj",
         "projectName": "App",
-        "projectPath": "G:\\PRAKTYKI\\Aplikacja ASP\\App\\App\\App.csproj",
+        "projectPath": "F:\\PRAKTYKI\\Aplikacja ASP\\App\\App\\App.csproj",
         "packagesPath": "C:\\Users\\Papcer\\.nuget\\packages\\",
-        "outputPath": "G:\\PRAKTYKI\\Aplikacja ASP\\App\\App\\obj\\",
+        "outputPath": "F:\\PRAKTYKI\\Aplikacja ASP\\App\\App\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Papcer\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,10 @@
             "Bogus": {
               "target": "Package",
               "version": "[35.0.1, )"
+            },
+            "EasyNetQ": {
+              "target": "Package",
+              "version": "[8.0.0-beta95, )"
             },
             "Gotenberg.Sharp.API.Client": {
               "target": "Package",
@@ -82,6 +86,10 @@
               "target": "Package",
               "version": "[2.88.6, )"
             },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.7.10, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
@@ -118,7 +126,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

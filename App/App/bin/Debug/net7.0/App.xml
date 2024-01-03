@@ -11,7 +11,7 @@
             <response code="200">Dane został dodane do bazy</response>
             <response code="400">Bład podczas dodawania</response>
         </member>
-        <member name="M:App.Controllers.PDFController.HtmlToPdf(Gotenberg.Sharp.API.Client.GotenbergSharpClient)">
+        <member name="M:App.Controllers.PDFController.HtmlToPdf(Gotenberg.Sharp.API.Client.GotenbergSharpClient,System.Nullable{System.Int32})">
             <summary>
             Api korzystające z narzędzia Gotenberg do konwertowania pliku html na pdf.
             Pobiera z bazy losowy event, klienta oraz utworzony wcześniej bilet i generuje plik pdf
