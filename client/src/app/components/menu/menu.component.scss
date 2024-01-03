@@ -1,4 +1,12 @@
-.main{
+// logo animation //
+@keyframes colorChange {
+  0%, 100% { background-color: #E6E8EC; }
+  25% { background-color: #04ea89; }
+  75% { background-color: #f8b100; }
+}
+
+
+.navbar{
   position: fixed;
   display: flex;
   width: 100%;
@@ -9,7 +17,15 @@
   transform: translateX(-50%);
   height: 92px;
   background-color: var(--color-super-light);
+  transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
+
 }
+.navbar.hide {
+  transform: translateY(-100px) translateX(-50%);
+  opacity: -50%;
+}
+
+
 .nav-content {
   position: fixed;
   display: flex;
@@ -48,6 +64,7 @@
       background: #E6E8EC;
       border: 0;
       box-sizing: border-box;
+      animation: colorChange 5s infinite;
 
       .svg-star {
         width: 16px;
@@ -95,8 +112,6 @@
         margin-right: 0;
       }
     }
-
-
   }
 
 
@@ -153,7 +168,6 @@
   }
 }
 
-
 .toggleMenu-button{
   background-color: black;
   width: 50px;
@@ -164,18 +178,28 @@
   border-radius: 10px;
 
 }
-.phone-menu-box{
+.phone-menu-box {
   background-color: var(--color-light);
   display: flex;
-right: 0;
+  right: 0;
   float: right;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
   position: fixed;
   margin-top: 600px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.9s ease;
 
 }
+
+.phone-menu-box.full {
+  margin-top: 600px;
+  max-height: 500px;
+}
+
+
 .toggle-menu-buttons{
   background-color: var(--color-super-light);
   display: flex;
@@ -186,10 +210,10 @@ right: 0;
   justify-content: center;
   gap: 64px;
 }
-
 .phone-div{
   display: block;
 }
+
 
 @media only screen and (min-width: 1025px) {
   #toggle-menu-buttons{
@@ -213,15 +237,11 @@ right: 0;
   }
   .nav-content {
     min-width: 500px;
-
-
     .left-content {
       gap: 24px;
-
       #dd {
         display: none;
       }
-
       .menu-buttons {
         gap: 24px;
       }
@@ -246,7 +266,6 @@ right: 0;
       .logo{
         background-color: var(--color-super-light);
         color: var(--color-dark);
-
         .p-logo{
           color: #23262F;
         }
@@ -254,7 +273,6 @@ right: 0;
       .line{
         display: none;
       }
-
       #menu-buttons {
         display: none;
       }

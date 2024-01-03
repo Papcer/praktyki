@@ -403,6 +403,9 @@
   .margin-top-60 {
     margin-top: 30px !important;
   }
+  .comments-frame{
+    gap: 5px !important;
+  }
   .news-form-frame {
     margin-top: 20px !important;
     max-width: 315px !important;
@@ -424,9 +427,12 @@
       width: 100%;
     }
     .input {
-      max-width: 310px;
+      max-width: 310px !important;
     }
   }
+
 }
+
+
 
 

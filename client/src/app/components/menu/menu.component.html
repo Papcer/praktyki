@@ -1,9 +1,9 @@
-<div class="main">
+<div [@scrollAnimation]="menuState" class="navbar" [class.hide]="menuState === 'hide'">
   <div class="nav-content">
     <div class="left-content">
       <div class="logo">
         <img class="svg-star" src="../../assets/svg/star.svg" alt="Star">
-        <p class="p-logo">LOGO</p>
+        <p class="p-logo ">LOGO</p>
       </div>
       <div class="line"></div>
       <div id="menu-buttons" class="menu-buttons">
@@ -38,8 +38,8 @@
     </div>
 
 
-    <div class="phone-menu-box">
-      <div *ngIf="isMenuOpen" class="toggle-menu-buttons">
+    <div *ngIf="showPhoneMenu" class="phone-menu-box expanded">
+      <div  class="toggle-menu-buttons" >
 
         <div class="phone-menu-top">
           <div class="logo">

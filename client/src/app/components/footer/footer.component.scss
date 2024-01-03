@@ -1,11 +1,11 @@
 .main{
   width: 100%;
-  min-width: 900px;
   display: flex;
-  max-width: calc(1440px - 320px);
+  max-width: var(--content-width);
   padding: 20px 0;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: #F4F5F6;
   box-sizing: border-box;
   margin-right: auto;
@@ -21,7 +21,6 @@
     font-weight: 500;
     line-height: 28px;
     margin-top: 54px;
-    margin-left: 222px;
   }
   .frame{
     display: flex;
@@ -29,11 +28,14 @@
     margin-left: 60px;
     margin-right: 60px;
     margin-top: 32px;
+    gap: 32px;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     .section{
       display: flex;
       flex-direction: column;
+      min-width: 145px;
       .section-title{
         margin: 0px;
         margin-bottom: 20px;
@@ -74,6 +76,7 @@
     margin-left: 60px;
     justify-content: space-between;
     align-items: flex-start;
+    flex-wrap: wrap;
 
     flex-shrink: 0;
     .language{
@@ -123,6 +126,27 @@
 }
 @media only screen and (max-width: 767px) {
   .main {
+    .section-title{
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 24px;
+   }
+    .frame{
+      margin-left: 10px;
+      margin-right: 10px;
+      gap: 10px;
 
+    }
+    p{
+      font-size: 12px !important;
+      font-weight: 400;
+      line-height: 20px;
+    }
+    .svg{
+    width: 140px;
+  }
+    .footer{
+      margin-left: 10px;
+    }
   }
 }

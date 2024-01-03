@@ -1,13 +1,11 @@
 
 .main{
   max-width: 350px;
-  height: 345px;
+  min-height: 345px;
   flex-shrink: 0;
   background-color: #F4F5F6;
   border-radius: 20px;
-  padding-top: 30px;
-  padding-left: 25px;
-  padding-right: 25px;
+ padding: 20px 10px 10px 10px;
   box-sizing: border-box;
   .comment{
     color: #3B5266;
@@ -69,6 +67,8 @@
 
 @media only screen and (max-width: 767px) {
   .main {
+  max-width: 265px;
 
   }
+
 }

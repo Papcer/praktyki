@@ -8,3 +8,9 @@
   background-color: #B1B5C3;
 
 }
+
+@media only screen and (max-width: 767px) {
+  .img-box {
+    width: 50vw;
+  }
+}
