@@ -3,15 +3,68 @@
 //@import 'swiper/swiper.scss';
 
 
-
+// light v2  #E6E8EC  #F4F5F6
 :root {
   --color-light: #F4F5F6;
   --color-super-light: #FFF;
+  --color-black: #000;
   --color-dark: #23262F;
+  --color-medium-dark: #3B5266;
+  --color-light-dark: #95A1BB;
   --content-width: 1120px;
+
+  --h-font: DM Sans;
+  --text-font: Poppins;
+  --button-font: Inter;
 }
 
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--h-font);
+  margin: 0;
+  padding: 0;
+}
+h1{
+ color: var(--color-black);
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 96px;
+}
+h2{
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 64px;
+}
+h3{  font-size: 42px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px;}
+h4{
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+}
+h5{
+  color: #141416;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+p{
+  font-family: var(--text-font);
+  margin: 0;
+  padding: 0;
+}
+button{
+  font-family: var(--button-font) !important;
+
+}
 
 
 @font-face {
@@ -23,7 +76,7 @@
 @font-face {
   font-family: 'Inter';
   src: local('Inter'), url('/assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf') format('woff2');
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
 }
 @font-face {

@@ -38,7 +38,7 @@
     </div>
 
 
-    <div *ngIf="showPhoneMenu" class="phone-menu-box expanded">
+    <div *ngIf="showPhoneMenu" class="phone-menu-box" >
       <div  class="toggle-menu-buttons" >
 
         <div class="phone-menu-top">
@@ -65,3 +65,5 @@
 </div>
 
 
+
+<div *ngIf="pageShadow" class="page-shadow" (click)="toggleMenu()" ></div>

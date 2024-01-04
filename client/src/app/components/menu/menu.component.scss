@@ -6,10 +6,30 @@
 }
 
 
+.page-shadow{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(5, 5, 5, 0.53);
+  z-index: 300;
+  position: fixed;
+  backdrop-filter: blur(2px);
+}
+
+
+.main-content {
+  filter: brightness(0.7);
+  pointer-events: none;
+}
+
+.main-content:not(.overlay-open) {
+  filter: none;
+  pointer-events: auto;
+}
+
 .navbar{
   position: fixed;
   display: flex;
-  width: 100%;
+  width: 100vw;
   padding: 0;
   align-items: center;
   z-index: 999;
@@ -35,7 +55,7 @@
   padding: 20px 0;
   justify-content: space-between;
   align-items: center;
-  background-color: #FFF;
+  background-color: var(--color-super-light);
   box-sizing: border-box;
   margin: 0 auto;
   z-index: 1000;
@@ -61,7 +81,7 @@
       align-items: center;
       gap: 12px;
       border-radius: 90px;
-      background: #E6E8EC;
+      background: var(--color-light);
       border: 0;
       box-sizing: border-box;
       animation: colorChange 5s infinite;
@@ -73,9 +93,9 @@
       }
 
       .p-logo {
-        color: #777E90;
+        color:  var(--color-light-dark);
         text-align: center;
-        font-family: DM Sans;
+       // font-family: DM Sans;
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
@@ -87,7 +107,7 @@
       width: 2px;
       height: 40px;
       border-radius: 2px;
-      background: #E6E8EC;
+      background: var(--color-light);
     }
 
     .menu-buttons {
@@ -99,9 +119,9 @@
       box-sizing: border-box;
 
       .p-menu {
-        color: #777E90;
+        color:  var(--color-light-dark);
         text-align: center;
-        font-family: DM Sans;
+      //  font-family: DM Sans;
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
@@ -137,7 +157,7 @@
         flex-direction: column;
         align-items: flex-start;
         border-radius: 12px;
-        border: 1px solid #777E90;
+        border: 1px solid var(--color-light-dark);
         background: #18191D;
         box-sizing: border-box;
         position: absolute;
@@ -145,8 +165,8 @@
         margin-left: 10px;
 
         .p-basket {
-          color: #FFF;
-          font-family: Inter;
+          color: var(--color-super-light);
+        //  font-family: Inter;
           font-size: 12px;
           font-style: normal;
           font-weight: 600;
@@ -175,10 +195,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+
 
 }
 .phone-menu-box {
+  border-radius: 20px;
+  z-index: 100;
   background-color: var(--color-light);
   display: flex;
   right: 0;
@@ -188,15 +210,15 @@
   justify-content: center;
   position: fixed;
   margin-top: 600px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.9s ease;
-
+  transform: translateX(500px);
+  opacity: 0;
+  transition: transform 1s ease, opacity 0.7s ease;
+  will-change: transform;
 }
 
-.phone-menu-box.full {
-  margin-top: 600px;
-  max-height: 500px;
+.phone-menu-box.expanded {
+  transform: translateX(-5px);
+  opacity: 1;
 }
 
 
@@ -209,6 +231,7 @@
   align-items: flex-end;
   justify-content: center;
   gap: 64px;
+  border-radius: 20px;
 }
 .phone-div{
   display: block;
@@ -283,26 +306,26 @@
   }
   .p-menu{
     color: #777E90;
-    font-family: Poppins;
+   // font-family: Poppins;
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
     line-height: 32px;
     width: 100%;
-    width: 350px;
     height: 65px;
     padding-left: 30px;
 
   }
   .phone-menu-top{
+    width: 85vw;
     background-color: var(--color-super-light);
     display: flex;
     flex-direction: row;
-    width: 100%;
     padding: 48px 24px 32px 32px;
     justify-content: space-between;
     box-sizing: border-box;
-    max-width: 380px;
+    border-radius: 20px;
+
   }
   .logo{
     display: flex;
@@ -311,7 +334,7 @@
     gap: 12px;
     .p-logo {
       text-align: center;
-      font-family: DM Sans;
+    //  font-family: DM Sans;
       font-size: 16px;
       font-style: normal;
       font-weight: 700;
@@ -320,12 +343,13 @@
   }
   .phone-menu-bottom{
     background-color: var(--color-super-light);
-    max-width: 380px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
+    border-radius: 20px;
 
   }
 }

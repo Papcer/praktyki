@@ -9,6 +9,7 @@ import {HomeForkComponent} from "../../components/home-fork/home-fork.component"
 import {HomeCommentComponent} from "../../components/home-comment/home-comment.component";
 import {HomeFooterPhotoComponent} from "../../components/home-footer-photo/home-footer-photo.component";
 import Swiper from "swiper";
+import {SliderWidthArrowsComponent} from "../../components/slider-width-arrows/slider-width-arrows.component";
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ import Swiper from "swiper";
     HomeFavoriteComponent,
     HomeForkComponent,
     HomeCommentComponent,
-    HomeFooterPhotoComponent
+    HomeFooterPhotoComponent,
+    SliderWidthArrowsComponent
 
   ],
   templateUrl: './home.component.html',
@@ -32,5 +34,16 @@ export class HomeComponent {
   title1='Our Exclusive Cakes';
   text1 = 'Most Popular'
 
+  photosUrl = "/assets/image/";
+  imagesTab=[
+    `${this.photosUrl}zdj1.jpeg`,
+    `${this.photosUrl}zdj2.jpeg`,
+    `${this.photosUrl}zdj3.png`,
+    `${this.photosUrl}zdj4.jpeg`,
+   // `${this.photosUrl}zdj5.jpeg`,
+    `${this.photosUrl}zdj6.jpeg`,
+    `${this.photosUrl}zdj7.jpeg`,
+//    `${this.photosUrl}zdj8.jpeg`,
+  ]
 
 }

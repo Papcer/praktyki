@@ -10,9 +10,9 @@
   flex-direction: column;
   .title{
     max-width: 155px;
-    color: #304659;
+    color: var(--color-dark);
     text-align: center;
-    font-family: Lato;
+  //  font-family: Lato;
     font-size: 20px;
     font-style: normal;
     font-weight: 800;
@@ -21,8 +21,8 @@
   }
   .text{
     max-width: 170px;
-    color: #3B5266;
-    font-family: Poppins;
+    color: var(--color-medium-dark);
+   // font-family: Poppins;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

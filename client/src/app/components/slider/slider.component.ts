@@ -11,4 +11,11 @@ export class SliderComponent {
   @Input() title = '';
   @Input() text = '';
 
+ // photosUrl = "./assets/image/";
+  @Input() imagesTab=[
+    `./assets/image/zdj1.jpeg`,
+
+   // `${this.photosUrl}zdj8.jpeg`,
+  ]
+
 }

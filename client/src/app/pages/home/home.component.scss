@@ -1,11 +1,33 @@
 
-
 .main {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  background: #FCFCFD;
+  background: var(--color-super-light);
   align-items: center;
+  overflow-x: hidden ;
+
+
+  .banner{
+    margin-top: 92px;
+    width: 100%;
+    height: calc(100vh - 92px);
+    background-image: url("/assets/image/zdj1.jpeg");
+    background-size: cover;
+    background-position: 40% 55%;
+    .h1-banner{
+      color: rgba(244, 245, 246, 0.75);
+    }
+    .p-banner{
+      color: rgba(244, 245, 246, 0.75);
+
+    }
+  }
+
+.bg{
+  background-color: rgba(255, 0, 0, 0) !important;
+}
+
   p {
     margin: 0;
   }
@@ -97,15 +119,15 @@
   ////////////////
   // section 1 //
   .frame {
-    max-width: 600px;
-    background-color: #F4F5F6;
+    max-width: 800px;
+    background-color: rgba(244, 245, 246, 0);
     margin-bottom: 160px;
     margin-top: 160px;
+    margin-left: 20px;
 
     h1 {
       max-width: 600px;
-      color: #141416;
-      font-family: DM Sans;
+    //  font-family: DM Sans;
       font-size: 96px;
       font-style: normal;
       font-weight: 700;
@@ -115,8 +137,7 @@
 
     p {
       max-width: 600px;
-      color: #000;
-      font-family: Poppins;
+    //  font-family: Poppins;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -128,16 +149,6 @@
       max-width: 192px;
       margin-top: 52px;
     }
-  }
-
-  .svg-box {
-    width: 372px;
-    height: 372px;
-    background-color: #F4F5F6;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
 
@@ -165,7 +176,7 @@
       align-items: flex-start;
       gap: 10px;
       border-radius: 40px;
-      border: 2px solid #E6E8EC;
+      border: 2px solid var(--color-light);
     }
   }
 
@@ -213,7 +224,7 @@
     flex-shrink: 0;
     border-radius: 20px;
     margin-top: 40px;
-    background-color: #e3e3e3;
+    background-color: var(--color-light);
     margin-bottom: 20px;
   }
 
@@ -246,9 +257,9 @@
     p {
       margin-right: 10px;
       margin-left: 10px;
-      color: #3B5266;
+      color: var(--color-medium-dark);
       text-align: center;
-      font-family: Poppins;
+    //  font-family: Poppins;
       font-size: 12px;
       font-style: normal;
       font-weight: 400;
@@ -266,10 +277,10 @@
         height: 46px;
         flex-shrink: 0;
         border-radius: 4px;
-        border: 1px solid #CAD1E1;
-        color: #95A1BB;
+        border: 1px solid var(--color-light);
+        background-color: var(--color-light);
         font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Poppins;
+      //  font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -305,9 +316,7 @@
         line-height: 64px;
       }
     }
-    .svg-box {
-      width: 260px;
-      height: 260px;
+    .banner-photo {
     }
     .section-box-comments{
       #sl{
@@ -328,7 +337,6 @@
 
 @media only screen and (max-width: 767px) {
   .main {
-    padding-top: 92px;
 
     .padding-and-space {
       padding-left: 30px;
@@ -360,10 +368,8 @@
       }
     }
 
-    .svg-box {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 50px;
+    .banner {
+    margin-top: 0;
     }
 
     .section-box-comments {
@@ -416,6 +422,7 @@
     align-items: center;
     gap: 32px;
     margin-bottom: 80px;
+
   }
 
   .newsletter-form {

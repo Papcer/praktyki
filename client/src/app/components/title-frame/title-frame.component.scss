@@ -10,9 +10,9 @@
 
 
   p {
-    color: #000;
+    color: var(--color-black);
     text-align: center;
-    font-family: Poppins;
+  //  font-family: Poppins;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -22,9 +22,9 @@
   }
 
   h4 {
-    color: #000;
+    color: var(--color-black);
     text-align: center;
-    font-family: DM Sans;
+  //  font-family: DM Sans;
     font-size: 32px;
     font-style: normal;
     font-weight: 700;

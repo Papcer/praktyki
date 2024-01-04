@@ -13,8 +13,8 @@
     width: 1120px;
     h4 {
       margin: 0px;
-      color: #000;
-      font-family: DM Sans;
+      color: var(--color-dark);
+    //  font-family: DM Sans;
       font-size: 32px;
       font-style: normal;
       font-weight: 700;
@@ -44,7 +44,7 @@
         align-items: flex-start;
         gap: 10px;
         border-radius: 40px;
-        border: 2px solid #E6E8EC;
+        border: 2px solid var(--color-light);
       }
     }
   }
