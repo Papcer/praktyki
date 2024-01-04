@@ -37,12 +37,13 @@ public class GenerateFakeData : Controller
     [HttpGet("AddFakeData")]
     public async Task<ActionResult> addFakeDataToDataBase()
     {
-        var usedUserIds = new HashSet<int>(); 
-        
+        var usedUserIds = new HashSet<int>();
+
         var fakerUser = new Faker<User>()
             .UseSeed(System.DateTime.Now.Millisecond)
             .RuleFor(u => u.username, f => f.Person.Email)
-            .RuleFor(u => u.password, "test");
+            .RuleFor(u => u.password, "test")
+            .RuleFor(u => u.email_verified, false);
 
         var fakeUsers = fakerUser.Generate(100000);
         
