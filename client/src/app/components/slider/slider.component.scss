@@ -63,7 +63,7 @@
     }
   }
   .dots-box {
-    min-width: 400px;
+    min-width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
@@ -84,9 +84,10 @@
   .slider {
     min-width: 600px;
     padding-top: 50px;
-    .svg-box {
-      width: 260px;
-      height: 260px;
+    gap: 20px;
+    justify-content: center;
+    .img-box {
+    max-width: 450px;
     }
 
     .frame{

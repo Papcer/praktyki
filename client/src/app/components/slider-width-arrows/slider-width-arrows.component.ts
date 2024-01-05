@@ -42,14 +42,12 @@ export class SliderWidthArrowsComponent implements OnInit {
     if (arrow == 'right') {
       newScrollLeft = slidesBox.scrollLeft + scrollDistance;
       if (newScrollLeft >= maxScrollLeft) {
-        // Powrót na początek scrolowania
-        //  newScrollLeft = 0;
+
       }
     } else if (arrow == 'left') {
       newScrollLeft = slidesBox.scrollLeft - scrollDistance;
       if (newScrollLeft >= maxScrollLeft) {
-        // Powrót na początek scrolowania
-        //  newScrollLeft = 0;
+
       }
     } else if (arrow == null) {
       newScrollLeft = slidesBox.scrollLeft + scrollDistance;

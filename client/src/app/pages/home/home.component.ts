@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import {MenuComponent} from "../../components/menu/menu.component";
 import {SliderComponent} from "../../components/slider/slider.component";
 import {FooterComponent} from "../../components/footer/footer.component";
@@ -8,7 +8,6 @@ import {HomeFavoriteComponent} from "../../components/home-favorite/home-favorit
 import {HomeForkComponent} from "../../components/home-fork/home-fork.component";
 import {HomeCommentComponent} from "../../components/home-comment/home-comment.component";
 import {HomeFooterPhotoComponent} from "../../components/home-footer-photo/home-footer-photo.component";
-import Swiper from "swiper";
 import {SliderWidthArrowsComponent} from "../../components/slider-width-arrows/slider-width-arrows.component";
 
 @Component({
@@ -45,5 +44,6 @@ export class HomeComponent {
     `${this.photosUrl}zdj7.jpeg`,
 //    `${this.photosUrl}zdj8.jpeg`,
   ]
+
 
 }

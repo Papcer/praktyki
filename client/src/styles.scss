@@ -1,72 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 
 //@import 'swiper/swiper.scss';
+@import './app/mixins.scss';
 
+
+
+//////////////  COLORS  //////////////
 
 // light v2  #E6E8EC  #F4F5F6
 :root {
   --color-light: #F4F5F6;
   --color-super-light: #FFF;
-  --color-black: #000;
+  --color-black: #141416;
   --color-dark: #23262F;
   --color-medium-dark: #3B5266;
   --color-light-dark: #95A1BB;
+
+  --hover-color-menu: rgba(190, 216, 234);
+  --hover-color-buttons-dark: rgba(35, 39, 47);
+  --hover-color-buttons-footer: rgba(190, 216, 234);
+  --hover-color-slider-arrows: #E6E8EC;
   --content-width: 1120px;
 
   --h-font: DM Sans;
   --text-font: Poppins;
   --button-font: Inter;
-}
 
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--h-font);
-  margin: 0;
-  padding: 0;
 }
-h1{
- color: var(--color-black);
-  font-size: 96px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 96px;
-}
-h2{
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 64px;
-}
-h3{  font-size: 42px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 48px;}
-h4{
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 40px;
-}
-h5{
-  color: #141416;
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 28px;
-}
-
-p{
-  font-family: var(--text-font);
-  margin: 0;
-  padding: 0;
-}
-button{
-  font-family: var(--button-font) !important;
-
-}
-
-
+//////////////////////////////////////
+//////////////  FONTS  ///////////////
 @font-face {
   font-family: 'DM Sans';
   src: local('DM Sans'), url('/assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('woff2');
@@ -91,9 +54,79 @@ button{
   font-weight: 400;
   font-style: normal;
 }
+
+:root {
+  --h-font: DM Sans;
+  --text-font: Poppins;
+  --button-font: Inter;
+
+}
+
+//////////////////////////////////////
+////////////  HEADINGS  //////////////
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--h-font);
+  margin: 0;
+  padding: 0;
+  color: var(--color-black);
+}
+h1{
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 96px;
+}
+h2{
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 64px;
+}
+h3{  font-size: 42px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px;
+}
+h4{
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+}
+h5{
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+}
+h6{
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+}
+//////////////////////////////////////
+
+
+p{
+  font-family: var(--text-font);
+  margin: 0;
+  padding: 0;
+}
+button{
+  font-family: var(--button-font) !important;
+
+}
+
+
 body{
   margin: 0;
 }
+
+
 
 :root{
   background-color: #F4F5F6;
@@ -104,7 +137,7 @@ body{
 .button-dark-16{
   display: flex;
   border-radius: 90px;
-  background: #141416;
+  background: var(--color-black);
   justify-content: center;
   align-items: center;
   gap: 12px;
@@ -119,11 +152,13 @@ body{
   font-weight: 700;
   line-height: 16px;
   width: 100%;
+  @include hover-and-cursor(var(--hover-color-buttons-dark));
+
 }
 .button-dark-14{
   display: flex;
   border-radius: 90px;
-  background: #141416;
+  background: var(--color-black);
   justify-content: center;
   align-items: center;
   gap: 12px;
@@ -137,6 +172,8 @@ body{
   font-style: normal;
   font-weight: 700;
   line-height: 16px;
+  @include hover-and-cursor(var(--hover-color-buttons-dark));
+
 }
 p{
   margin: 0px;

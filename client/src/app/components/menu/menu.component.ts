@@ -10,15 +10,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   imports: [LogoComponent,
     SliderComponent,
     CommonModule,
-
     ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
-  animations: [
-    trigger('scrollAnimation', [
-    ]),
-  ],
-
 })
 
 export class MenuComponent {
