@@ -69,7 +69,8 @@ xcuserdata/
 # ASP.NET
 bin/
 obj/
-
+/App/App/bin
+/App/App/obj
 # Visual Studio Code
 .vscode/
 
