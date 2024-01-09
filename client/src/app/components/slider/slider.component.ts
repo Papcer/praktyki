@@ -10,6 +10,7 @@ import { Component, Input } from '@angular/core';
 export class SliderComponent {
   @Input() title = '';
   @Input() text = '';
+  @Input() isMobile: boolean = false;
 
  // photosUrl = "./assets/image/";
   @Input() imagesTab=[

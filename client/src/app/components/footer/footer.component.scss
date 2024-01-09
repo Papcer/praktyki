@@ -40,14 +40,10 @@
       min-width: 145px;
 
       .section-title {
-        margin: 0px;
+        margin: 0;
         margin-bottom: 20px;
         color: var(--color-medium-dark);
-        // font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 24px;
+
       }
 
       .section-frame {
@@ -64,8 +60,6 @@
 
         p {
           color: var(--color-medium-dark);
-          font-weight: 400;
-          line-height: 22px;
         }
       }
     }
@@ -98,11 +92,6 @@
       p {
         color: var(--color-light-dark);
         font-feature-settings: 'clig' off, 'liga' off;
-        //  font-family: Poppins;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 22px;
       }
     }
 
@@ -112,17 +101,19 @@
       max-width: 350px;
       text-align: right;
       font-feature-settings: 'clig' off, 'liga' off;
-      //  font-family: Poppins;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 22px;
     }
   }
 
   .svg {
+    fill: var(--color-black);
     @include hover-and-cursor(var(--hover-color-buttons-footer));
     border-radius: 5px;
+    transition: fill 0.3s ease-in-out;
+  }
+  .svg:hover{
+    fill: var(--color-dark);
+    cursor: pointer;
+    transition: fill 0.3s ease-in-out;
   }
 
 
@@ -142,12 +133,9 @@
     p {
       color: var(--color-light-dark);
       font-feature-settings: 'clig' off, 'liga' off;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 22px;
       padding: 8px 20px;
       border-radius: 10px;
+      overflow: visible;
       @include hover-and-cursor(var(--hover-color-menu));
 
     }
@@ -159,8 +147,6 @@
     100% {
       max-height: 150px;
       height: 100%;
-
-
     }
   }
   @keyframes collapseHeight {
@@ -202,12 +188,6 @@
 
 @media only screen and (max-width: 767px) {
   .main {
-    .section-title {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 24px;
-    }
-
     .frame {
       margin-left: 10px;
       margin-right: 10px;
@@ -219,11 +199,6 @@
       min-width: 200px;
     }
 
-    p {
-      font-size: 12px !important;
-      font-weight: 400;
-      line-height: 20px;
-    }
 
     .svg {
       max-width: 140px;

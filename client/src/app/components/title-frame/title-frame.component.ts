@@ -10,4 +10,5 @@ import {Component, Input} from '@angular/core';
 export class TitleFrameComponent {
   @Input() title = '';
   @Input() text = '';
+  @Input() isMobile = false;
 }

@@ -42,24 +42,11 @@
     margin-top: 100px;
     .topic {
       color: var(--color-dark);
-    //  font-family: DM Sans;
-      font-size: 64px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 64px;
-      letter-spacing: -1px;
-      margin: 0px;
     }
 
     .under-topic {
       color: var(--color-dark);
-      margin: 0px;
-      margin-top: 32px;
-     // font-family: Poppins;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 24px;
+
     }
   }
   .dots-box {
@@ -92,10 +79,6 @@
 
     .frame{
       max-width: 450px;
-      h1{
-        font-size: 64px;
-        line-height: 64px;
-      }
     }
     .dots-box{
       margin-top: 120px;

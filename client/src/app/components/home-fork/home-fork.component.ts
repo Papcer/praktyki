@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-home-fork',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './home-fork.component.scss'
 })
 export class HomeForkComponent {
-
+  @Input() isMobile: boolean = false;
 }

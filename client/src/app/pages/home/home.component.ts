@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import {Component, ViewChild, ElementRef, AfterViewInit, Renderer2, HostListener, OnInit} from '@angular/core';
 import {MenuComponent} from "../../components/menu/menu.component";
 import {SliderComponent} from "../../components/slider/slider.component";
 import {FooterComponent} from "../../components/footer/footer.component";
@@ -29,11 +29,12 @@ import {SliderWidthArrowsComponent} from "../../components/slider-width-arrows/s
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   title1='Our Exclusive Cakes';
-  text1 = 'Most Popular'
-
+  text1 = 'Most Popular';
+  isMobile: boolean = true;
   photosUrl = "/assets/image/";
+
   imagesTab=[
     `${this.photosUrl}zdj1.jpeg`,
     `${this.photosUrl}zdj2.jpeg`,
@@ -45,5 +46,18 @@ export class HomeComponent {
 //    `${this.photosUrl}zdj8.jpeg`,
   ]
 
+  constructor() {}
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
 
+    this.checkWindowSize();
+  }
+
+  private checkWindowSize(): void {
+    this.isMobile = window.innerWidth <= 767;
+  }
+
+  ngOnInit(): void {
+    this.checkWindowSize();
+  }
 }

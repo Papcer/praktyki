@@ -1,20 +1,45 @@
-@mixin hover-and-cursor($color, $show: true) {
+@mixin hover-and-cursor($color, $show: true, $transition-duration: 0.3s) {
   @media only screen and (min-width: 1025px) {
-
+    @content;
     @if $show {
       &:hover {
         background-color: $color;
         cursor: pointer;
+        transition: background-color $transition-duration ease-in-out;
       }
     } @else {
       &:hover {
         background-color: initial;
         cursor: initial;
+        transition: background-color $transition-duration ease-in-out;
       }
       &.pointy {
         cursor: initial;
       }
     }
   }
-
 }
+
+
+@function font-size($size) {
+  @return $size * 1px;
+}
+
+@mixin text-style($size, $weight: 400) {
+  font-size: font-size($size);
+  font-weight: $weight;
+  font-family: var(--text-font);
+  line-height: 24px;
+  @content;
+}
+
+@mixin cta-style($size, $weight: 700) {
+  font-size: font-size($size);
+  font-weight: $weight;
+  font-family: var(--button-font);
+  line-height: 16px;
+  @content;
+}
+
+
+

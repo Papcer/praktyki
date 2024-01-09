@@ -28,12 +28,12 @@
         <div class="frame">
           <div class="text-frame">
             <h6>Neque volutpat morbi .</h6>
-            <p class="p-small">Et blandit non sit ac volutpat morbi blandit non si egestas blandit non risus non.</p>
-            <button class="button-dark-14 btn-fix">Order Now</button>
+            <p class="p-small" [class.text_16]="!isMobile" [class.text_12]="isMobile">Et blandit non sit ac volutpat morbi blandit non si egestas blandit non risus non.</p>
+            <button class="button-dark btn-fix cta_14">Order Now</button>
           </div>
         </div>
         <div class="price">
-          <p class="p-price">$20</p>
+          <p class="p-price" [class.text_16]="!isMobile" [class.text_14_medium]="isMobile">$20</p>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Language {
@@ -15,6 +15,7 @@ interface Language {
 })
 
 export class FooterComponent {
+  @Input() isMobile: boolean = false;
   isMenuOpen = false;
   mail: string = "sweetdeli@gmail.com";
 

@@ -115,18 +115,10 @@
 
         p {
           color: var(--color-dark);
-          //  font-family: Poppins;
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: 24px;
-          margin: 0px;
+          margin: 0;
         }
 
         .p-small {
-          font-size: 12px;
-          font-weight: 400;
-          line-height: 20px;
           margin-top: 8px;
         }
 
@@ -153,11 +145,6 @@
       .p-price{
         color: var(--color-dark);
         text-align: center;
-        // font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 24px;
       }
     }
   }
@@ -172,6 +159,12 @@
 @media only screen and (max-width: 767px) {
   .slides-box {
     max-width: 292px;
+  }
+  .text-frame{
+    height: 200px;
+  }
+  h6{
+    margin-top: 10px;
   }
   .slides {
     width: 290px;

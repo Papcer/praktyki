@@ -100,11 +100,6 @@ border-bottom: 2px solid var(--color-light);
       .p-logo {
         color:  var(--color-light-dark);
         text-align: center;
-       // font-family: DM Sans;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 16px;
       }
     }
 
@@ -129,11 +124,7 @@ border-bottom: 2px solid var(--color-light);
         text-align: center;
         border-radius: 10px;
         padding: 8px 10px;
-      //  font-family: DM Sans;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 16px;
+
         @include hover-and-cursor(var(--hover-color-menu));
       }
 
@@ -182,12 +173,6 @@ margin-right: 10px;
 
         .p-basket {
           color: var(--color-super-light);
-        //  font-family: Inter;
-          font-size: 12px;
-          font-style: normal;
-          font-weight: 600;
-          line-height: 16px;
-          margin: 0px;
         }
 
       }
@@ -310,9 +295,6 @@ margin-right: 10px;
       .logo{
         background-color: var(--color-super-light);
         color: var(--color-dark);
-        .p-logo{
-          color: #23262F;
-        }
       }
       .line{
         display: none;
@@ -326,12 +308,7 @@ margin-right: 10px;
     }
   }
   .p-menu{
-    color: #777E90;
-   // font-family: Poppins;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 32px;
+    color: var(----color-menu-text);
     width: 100%;
     height: 65px;
     padding-left: 30px;
@@ -355,11 +332,7 @@ margin-right: 10px;
     gap: 12px;
     .p-logo {
       text-align: center;
-    //  font-family: DM Sans;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 16px;
+
     }
   }
   .phone-menu-bottom{

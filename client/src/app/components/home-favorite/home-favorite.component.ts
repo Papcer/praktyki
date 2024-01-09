@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-home-favorite',
@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './home-favorite.component.scss'
 })
 export class HomeFavoriteComponent {
+  @Input() isMobile: boolean = false;
 
 }
