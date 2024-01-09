@@ -194,6 +194,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
+    'SIGNING_KEY': 'URSEtbL5giT1P0um_E0wEUF55-BhIm6ngFpJAoliA4s',
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60), #czas zycia tokenu
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1), #czas zycia refresh tokenu
     'AUTH_HEADER_TYPES': ('Bearer',), #typ naglowka
