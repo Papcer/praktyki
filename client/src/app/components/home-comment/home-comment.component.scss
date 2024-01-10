@@ -1,9 +1,10 @@
+@import '../../mixins.scss';
 
 .main{
   max-width: 350px;
   min-height: 345px;
   flex-shrink: 0;
-  background-color: var(--color-super-light);
+  background-color: var(--color-light);
   border-radius: 20px;
  padding: 20px 10px 10px 10px;
   box-sizing: border-box;
@@ -35,8 +36,7 @@
 }
 
 
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@include tablet{
   .main {
     padding-left: 20px;
     padding-right: 20px;
@@ -49,10 +49,8 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
+@include mobile {
   .main {
   max-width: 265px;
-
   }
-
 }
