@@ -1,3 +1,6 @@
+@import '../../mixins.scss';
+
+
 .main{
   width: 100%;
   display: flex;
@@ -12,7 +15,6 @@
   display: flex;
   width: 100%;
   max-width: var(--content-width);
-  padding: 20px 0;
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-super-light);
@@ -20,7 +22,6 @@
   margin-right: auto;
   margin-left: auto;
   flex-wrap: wrap;
-  padding-top: 105px;
   padding: 0 20px ;
   .img-box {
     display: flex;
@@ -62,12 +63,7 @@
 }
 
 
-
-@media only screen and (min-width: 1025px) {
-  .main {}
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@include tablet{
   .slider {
     min-width: 600px;
     padding-top: 50px;
@@ -86,7 +82,9 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
+
+
+@include mobile {
   .slider {
     background-color: var(--color-light);
     flex-direction: column-reverse;

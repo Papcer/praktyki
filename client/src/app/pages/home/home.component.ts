@@ -38,12 +38,13 @@ export class HomeComponent implements OnInit {
   imagesTab=[
     `${this.photosUrl}zdj1.jpeg`,
     `${this.photosUrl}zdj2.jpeg`,
-    `${this.photosUrl}zdj3.png`,
     `${this.photosUrl}zdj4.jpeg`,
-   // `${this.photosUrl}zdj5.jpeg`,
     `${this.photosUrl}zdj6.jpeg`,
     `${this.photosUrl}zdj7.jpeg`,
-//    `${this.photosUrl}zdj8.jpeg`,
+    `${this.photosUrl}zdj2.jpeg`,
+    `${this.photosUrl}zdj4.jpeg`,
+    `${this.photosUrl}zdj6.jpeg`,
+//
   ]
 
   constructor() {}

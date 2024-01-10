@@ -1,26 +1,64 @@
-@mixin hover-and-cursor($color, $show: true, $transition-duration: 0.3s) {
-  @media only screen and (min-width: 1025px) {
+/// zły do skasowania po podmianie na nowy
+@mixin hover-and-cursor($color, $transition-duration: 0.3s) {
+  @include desktop {
     @content;
-    @if $show {
+    transition: background-color $transition-duration ease-in-out;
+    cursor: pointer;
       &:hover {
         background-color: $color;
-        cursor: pointer;
-        transition: background-color $transition-duration ease-in-out;
+
       }
-    } @else {
-      &:hover {
-        background-color: initial;
-        cursor: initial;
-        transition: background-color $transition-duration ease-in-out;
-      }
-      &.pointy {
-        cursor: initial;
-      }
-    }
   }
 }
 
 
+
+/////  v2  dobry ///////
+@mixin hover {
+  @include desktop {
+    &:hover {
+      @content;
+    }
+  }
+}
+/* //   dobry
+.d {
+  background-color: red;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  @include hover {
+    background-color: yellow;
+  }
+}
+
+*/
+
+
+@mixin mobile {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 1025px)  {
+    @content;
+  }
+}
+
+
+
+
+
+
+
+/*
 @function font-size($size) {
   @return $size * 1px;
 }
@@ -41,5 +79,5 @@
   @content;
 }
 
-
+*/
 

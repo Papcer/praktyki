@@ -169,7 +169,7 @@
 }
 
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@include tablet {
   .main {
     min-width: 600px;
 
@@ -186,19 +186,17 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
+@include mobile {
   .main {
     .frame {
       margin-left: 10px;
       margin-right: 10px;
       gap: 10px;
-
     }
 
     .footer {
       min-width: 200px;
     }
-
 
     .svg {
       max-width: 140px;
