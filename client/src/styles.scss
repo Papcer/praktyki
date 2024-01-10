@@ -42,6 +42,34 @@ body {
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/DM_Sans/DMSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/DM_Sans/DMSans-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/DM_Sans/DMSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/DM_Sans/DMSans-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 @font-face {
   font-family: 'Poppins';
@@ -118,7 +146,7 @@ body {
 
 @font-face {
   font-family: 'Rubik';
-  src: url('/assets/fonts?Rubik-Italic.woff2') format('woff2');
+  src: url('/assets/fonts/Rubik/Rubik-Italic.woff2') format('woff2');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -159,7 +187,6 @@ body {
   --h-font: DM Sans;
   --text-font: Rubik;
   --button-font: Inter;
-  --testFont:Poppins;
 }
 
 //////////////////////////////////////
