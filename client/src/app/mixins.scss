@@ -1,16 +1,3 @@
-/// zły do skasowania po podmianie na nowy
-@mixin hover-and-cursor($color, $transition-duration: 0.3s) {
-  @include desktop {
-    @content;
-    transition: background-color $transition-duration ease-in-out;
-    cursor: pointer;
-      &:hover {
-        background-color: $color;
-      }
-  }
-}
-
-
 
 /////  v2  dobry ///////
 @mixin hover {
@@ -20,16 +7,6 @@
     }
   }
 }
-/* //   dobry
-.d {
-  background-color: red;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  @include hover {
-    background-color: yellow;
-  }
-}
-*/
 
 
 @mixin mobile {

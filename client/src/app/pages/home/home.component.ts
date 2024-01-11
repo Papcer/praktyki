@@ -32,7 +32,7 @@ import {SliderWidthArrowsComponent} from "../../components/slider-width-arrows/s
 export class HomeComponent implements OnInit {
   title1='Our Exclusive Cakes';
   text1 = 'Most Popular';
-  isMobile: boolean = true;
+  //isMobile: boolean = true;
   photosUrl = "/assets/image/";
 
   imagesTab=[
@@ -44,10 +44,11 @@ export class HomeComponent implements OnInit {
     `${this.photosUrl}zdj2.jpeg`,
     `${this.photosUrl}zdj4.jpeg`,
     `${this.photosUrl}zdj6.jpeg`,
-//
   ]
 
   constructor() {}
+
+  /*
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
 
@@ -58,7 +59,9 @@ export class HomeComponent implements OnInit {
     this.isMobile = window.innerWidth <= 767;
   }
 
+   */
+
   ngOnInit(): void {
-    this.checkWindowSize();
+ //   this.checkWindowSize();
   }
 }

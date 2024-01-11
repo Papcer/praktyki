@@ -15,7 +15,6 @@ interface Language {
 })
 
 export class FooterComponent {
-  @Input() isMobile: boolean = false;
   isMenuOpen = false;
   mail: string = "sweetdeli@gmail.com";
 

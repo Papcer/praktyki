@@ -445,7 +445,12 @@ button {
   color: #FCFCFD;
   text-align: center;
   width: 100%;
-  @include hover-and-cursor(var(--hover-color-buttons-dark));
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  @include hover{
+    background-color: var(--hover-color-buttons-dark);
+  }
+
 
 }
 

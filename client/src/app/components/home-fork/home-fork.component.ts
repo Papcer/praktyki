@@ -8,5 +8,5 @@ import {Component, Input} from '@angular/core';
   styleUrl: './home-fork.component.scss'
 })
 export class HomeForkComponent {
-  @Input() isMobile: boolean = false;
+
 }

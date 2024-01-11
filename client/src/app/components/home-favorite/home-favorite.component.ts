@@ -8,6 +8,5 @@ import {Component, Input} from '@angular/core';
   styleUrl: './home-favorite.component.scss'
 })
 export class HomeFavoriteComponent {
-  @Input() isMobile: boolean = false;
 
 }

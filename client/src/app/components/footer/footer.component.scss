@@ -106,9 +106,12 @@
 
   .svg {
     fill: var(--color-black);
-    @include hover-and-cursor(var(--hover-color-buttons-footer));
     border-radius: 5px;
+    cursor: pointer;
     transition: fill 0.3s ease-in-out;
+    @include hover{
+      background-color: var(--hover-color-buttons-footer);
+    }
   }
   .svg:hover{
     fill: var(--color-dark);
@@ -136,7 +139,11 @@
       padding: 8px 20px;
       border-radius: 10px;
       overflow: visible;
-      @include hover-and-cursor(var(--hover-color-menu));
+      cursor: pointer;
+      transition: fill 0.3s ease-in-out;
+      @include hover{
+        background-color: var(--hover-color-menu);
+      }
 
     }
   }

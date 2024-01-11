@@ -14,7 +14,7 @@ import {CommonModule} from '@angular/common';
 })
 export class SliderWidthArrowsComponent implements OnInit {
   @Input() imagesTab: string[] = [];
-  @Input() isMobile: boolean = false;
+
   isScrolling = true;
 
   constructor(private renderer: Renderer2, private el: ElementRef) {

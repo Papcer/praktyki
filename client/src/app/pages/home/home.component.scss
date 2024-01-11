@@ -140,6 +140,7 @@ h1 {
   margin-left: auto;
   margin-bottom: 30px;
 
+
   .left-arrow {
     display: flex;
     padding: 8px;
@@ -297,12 +298,15 @@ h1 {
   #sll {
     display: none;
   }
+  .btn-change{
+    margin-top: 30px;
+  }
   .main {
 
     .frame {
-      max-width: 450px;
-      margin-bottom: 100px;
-      margin-top: 150px;
+      max-width: 550px;
+      margin-top: 20px;
+      margin-left: 80px;
     }
 
     .banner-photo {
@@ -339,7 +343,7 @@ h1 {
     }
 
     .frame {
-      max-width: 400px;
+      max-width: 550px;
       margin-top: 100px;
       display: flex;
       flex-direction: column;

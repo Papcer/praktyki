@@ -33,8 +33,12 @@
 .round-frame{
   border: 2px solid #E6E8EC;
   background-color: var(--color-light);
-  @include hover-and-cursor(var(--hover-color-slider-arrows));
 
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  @include hover{
+    background-color: var(--hover-color-slider-arrows);
+  }
 }
 .orders-box {
   display: flex;
